@@ -406,17 +406,21 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 def sumLastElement(file):
-    f = open(file, "r").read()
-    evenNumbers = []
-    for line in f:
-        lastElement = line[-1:]
-        if int(lastElement) and lastElement % 2 == 0:
-            evenNumbers.append(lastElement)
-            break
 
-    return sum(evenNumbers)
-    # return sum(evenNumbers)
-    f.close()
+    with open(file, 'r') as f:
+        evenNumbers = []
+
+        for line in f:
+            lastElement = line.replace('\n', '')[-1]
+
+            try:
+                elementAsInt = int(lastElement)
+                if elementAsInt % 2 == 0:
+                    evenNumbers.append(elementAsInt)
+            except ValueError:
+                pass
+
+        return sum(evenNumbers)
 
 ANSWER = sumLastElement("httpd-access.txt")
 
@@ -425,7 +429,7 @@ ANSWER = sumLastElement("httpd-access.txt")
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.6", ANSWER, False))
+print(dbwebb.assertEqual("2.6", ANSWER, True))
 
 
 dbwebb.exitWithSummary()
