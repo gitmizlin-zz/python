@@ -53,10 +53,7 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 text = "lollipop"
-firstLetter = text[:1] 
-lastLetter = text[-1:]
-
-ANSWER = firstLetter + ", " + lastLetter
+ANSWER = text[:1] + text[-1:]
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -71,9 +68,8 @@ as an integer.
 Write your code below and put the answer into the variable ANSWER.
 """
 text = "banana"
-lengthOfText = len(text)
 
-ANSWER = lengthOfText
+ANSWER = len(text)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -88,9 +84,7 @@ Answer with a boolean result.
 Write your code below and put the answer into the variable ANSWER.
 """
 word = "melon"
-result = 'a' in word
-
-ANSWER = result
+ANSWER = 'a' in word
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -105,9 +99,8 @@ capitalized word.
 Write your code below and put the answer into the variable ANSWER.
 """
 text = "banana"
-textCapital = text.upper()
 
-ANSWER = textCapital
+ANSWER = text.upper()
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -122,9 +115,7 @@ with the letter 'n'. Answer with the boolean value.
 Write your code below and put the answer into the variable ANSWER.
 """
 word = "orange"
-result = word.startswith("n")
-
-ANSWER = result
+ANSWER = word.startswith("n")
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -240,13 +231,13 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 def formatOperator(string1, integer, string2):
-    return "My %s has %s %s." % (string1, integer, string2)
+    return "My %s has %s %s" % (string1, integer, string2)
 
 ANSWER = formatOperator("grandma", 42, "cows")
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("1.12", ANSWER, False))
+print(dbwebb.assertEqual("1.12", ANSWER, True))
 
 """
 Exercise 1.13 
@@ -258,14 +249,11 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 text = "984.45.6.65 : (wasp), boat"
-parenthesis1 = "("
-sliceIndex1 = text.index("(")	
-sliceIndex2 = text.index(")")	
-ANSWER = text[sliceIndex1+1:sliceIndex2]
 
-# def findAndSlice(var):
-# 	parenthesis1.find(text)
-# 	parenthesis1.find(text)
+def removeParanthesis(var):
+    return var[str.find(var, "(")+1:str.find(var, ")")]
+
+ANSWER = removeParanthesis(text)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -287,11 +275,16 @@ with the result as an integer.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+def countLine(file, var):
+	f = open(file)
+	count = 0
+	for line in f:
+		if line.startswith(var):
+		    count = count + 1
+	return count
+	f.close()
 
-
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = countLine("httpd-access.txt", "81")
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -305,16 +298,24 @@ as an integer.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def findLine(file, integer):	
+    f = open(file)
+    for i, line in enumerate(f):
+        if i == integer - 1:
+            return int(line[-5:-1])
+            break
+    f.close()
 
+"""
+enumerate(iterable, start=0) 
+Return an enumerate object. iterable must be a sequence, an iterator, or some other object which supports iteration.
+"""
 
-
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = findLine("httpd-access.txt", 821)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.2", ANSWER, False))
+print(dbwebb.assertEqual("2.2", ANSWER, True))
 
 """
 Exercise 2.3 
@@ -324,16 +325,29 @@ the highest amount of entries. Answer with the result as an integer.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+ip1 = "81.226.253.26"
+ip2 = "95.19.133.73"
 
+def coundAndCompare(file, var1, var2):
+    f = open(file)
+    countVars = [0, 0]
 
+    for line in f:
+        if var1 in line:
+            countVars[0] += 1
+        if var2 in line:
+            countVars[1] += 1
 
+    if countVars[0] >= countVars[1]:
+    	return int(countVars[0])
+    else:
+    	return int(countVars[1])
 
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = coundAndCompare("httpd-access.txt", ip1, ip2)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.3", ANSWER, False))
+print(dbwebb.assertEqual("2.3", ANSWER, True))
 
 """
 Exercise 2.4 
@@ -345,11 +359,14 @@ Answer with the result as an integer.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+def countChar(file, var):	
+    f = open(file, "r").read()
 
+    return int(f.count(var))
+    
+    f.close()
 
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = countChar("httpd-access.txt", ".")
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -365,11 +382,15 @@ string you found.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+def findChars(file, lineNumber, index1, index2):	
+    f = open(file)
+    for i, line in enumerate(f):
+        if i == lineNumber - 1:
+            return line[index1:index2+1]
+            break
+    f.close()
 
-
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = findChars("httpd-access.txt", 637, 65, 75)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -384,11 +405,23 @@ Answer with the result as an integer.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+def sumLastElement(file):
+    f = open(file, "r").read()
+    evenNumbers = []
+    for line in f:
+        lastElement = line[-1:]
+        if int(lastElement) and lastElement % 2 == 0:
+            evenNumbers.append(lastElement)
+            break
 
+    return sum(evenNumbers)
+    # return sum(evenNumbers)
+    f.close()
 
+ANSWER = sumLastElement("httpd-access.txt")
 
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+# Is the answer as expected?
+# When you get stu
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
