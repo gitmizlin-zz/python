@@ -58,8 +58,16 @@ def menu():
     print("10) Hypotenusan på triangel.Mi ska fråga efter rätvinkliga sidor och räkna ut hypotenusan på triangeln.")
     print("11) Taljämförelse. Mi ska fråga efter tal och för varje tal angivet "
           "så ska Mi skriva ut om det talet var större, mindre eller samma som det förra talet som skrev in.")
-    print("12) Guess the number. Mi ska tänka på ett tal mellan 1-100 och du ska gissa vilket det är. För varje gissning ska Mi berätta om gissningen var högre eller lägre än det han tänkte på. Du ska ha 6 gissningar på dig.")
-    print("13) Mi ska skriva ut: dagens datum och nuvarande tid, hur hon mår (slumpmässigt humör), ett heltal, samt ett floattal med 3 decimaler.")
+    print("12) Guess the number. Mi ska tänka på ett tal mellan 1-100 "
+          "och du ska gissa vilket det är. För varje gissning ska Mi "
+          "berätta om gissningen var högre eller lägre än det han "
+          "tänkte på. Du ska ha 6 gissningar på dig.")
+    print("13) Mi ska skriva ut: dagens datum och nuvarande tid, "
+          "hur hon mår (slumpmässigt humör), ett heltal, samt ett floattal "
+          "med 3 decimaler.")
+    print("14) Kasta om bokstäver. Mi ska be dig skriva in ett ord som "
+          "sedan slumpmässigt kastas om. Det omkastade ordet ska sedan " 
+          "skrivas ut.")
     print("q) Quit.")
 
 def getInputFromUser(inputText, verifier, error=None):

@@ -134,7 +134,10 @@ word1 = "car"
 word2 = "apple"
 
 def conWords(var1, var2):
-	return(var1 + var2)
+    """
+    Concatenate words
+    """
+    return var1 + var2
 
 ANSWER = conWords(word1, word2)
 
@@ -153,7 +156,11 @@ Write your code below and put the answer into the variable ANSWER.
 word = "lollipop"
 
 def makeSentence(var):
-	return("This word was: " + var)
+    """
+    Concatenate variable and string
+    """
+
+    return "This word was: " + var
 
 ANSWER = makeSentence(word)
 
@@ -173,10 +180,14 @@ Write your code below and put the answer into the variable ANSWER.
 word = "apple"
 
 def checkLen(var):
-	if len(var) > 5:
-		return "yes"
-	else:
-		return "no"
+    """
+    Check the length of string
+    """
+
+    if len(var) > 5:
+        return "yes"
+    else:
+        return "no"
 
 ANSWER = checkLen(word)
 
@@ -195,7 +206,10 @@ Write your code below and put the answer into the variable ANSWER.
 word = "banana"
 
 def backwards(var):
-	return var[::-1]
+    """
+    Return a word reversed
+    """
+    return var[::-1]
 
 ANSWER = backwards(word)
 
@@ -213,7 +227,10 @@ with the result.
 Write your code below and put the answer into the variable ANSWER.
 """
 def excludeFirstAndLastLetter(var):
-	return str.strip(var[1:-1])
+    """
+    Return a given string without the first and last letter
+    """
+    return str.strip(var[1:-1])
 
 ANSWER = excludeFirstAndLastLetter("car")
 
@@ -231,6 +248,9 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 def formatOperator(string1, integer, string2):
+    """
+    Use format operators in string
+    """
     return "My %s has %s %s" % (string1, integer, string2)
 
 ANSWER = formatOperator("grandma", 42, "cows")
@@ -251,6 +271,9 @@ Write your code below and put the answer into the variable ANSWER.
 text = "984.45.6.65 : (wasp), boat"
 
 def removeParanthesis(var):
+    """
+    Return string between paranthesis
+    """
     return var[str.find(var, "(")+1:str.find(var, ")")]
 
 ANSWER = removeParanthesis(text)
@@ -276,13 +299,15 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 def countLine(file, var):
-	f = open(file)
-	count = 0
-	for line in f:
-		if line.startswith(var):
-		    count = count + 1
-	return count
-	f.close()
+    """
+    Cound the number of lines in the file that start with certain characters
+    """
+    with open(file, "r") as f:
+        count = 0
+        for line in f:
+            if line.startswith(var):
+                count = count + 1
+        return count
 
 ANSWER = countLine("httpd-access.txt", "81")
 
@@ -329,19 +354,22 @@ ip1 = "81.226.253.26"
 ip2 = "95.19.133.73"
 
 def coundAndCompare(file, var1, var2):
-    f = open(file)
-    countVars = [0, 0]
+    """
+    Find certain lines in the file containing certain ips and compare them 
+    """
+    with open(file, "r") as f:
+        countVars = [0, 0]
 
-    for line in f:
-        if var1 in line:
-            countVars[0] += 1
-        if var2 in line:
-            countVars[1] += 1
+        for line in f:
+            if var1 in line:
+                countVars[0] += 1
+            if var2 in line:
+                countVars[1] += 1
 
     if countVars[0] >= countVars[1]:
-    	return int(countVars[0])
+        return int(countVars[0])
     else:
-    	return int(countVars[1])
+        return int(countVars[1])
 
 ANSWER = coundAndCompare("httpd-access.txt", ip1, ip2)
 
@@ -359,9 +387,11 @@ Answer with the result as an integer.
 Write your code below and put the answer into the variable ANSWER.
 """
 
-def countChar(file, var):	
+def countChar(file, var): 
+    """
+    Count the number of a certain character in the file
+    """   
     f = open(file, "r").read()
-
     return int(f.count(var))
     
     f.close()
@@ -406,6 +436,9 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 def sumLastElement(file):
+    """
+    Return the sum of the last element of each line ending with a even number
+    """
 
     with open(file, 'r') as f:
         evenNumbers = []
