@@ -323,13 +323,15 @@ as an integer.
 
 Write your code below and put the answer into the variable ANSWER.
 """
-def findLine(file, integer):	
-    f = open(file)
-    for i, line in enumerate(f):
-        if i == integer - 1:
-            return int(line[-5:-1])
+def findLine(file, integer):
+    """
+    Return the last 4 digits on a certain line in the file 
+    """    
+    with open(file, "r") as f:
+        for i, line in enumerate(f):
+            if i == integer - 1:
+                return int(line[-5:-1])
             break
-    f.close()
 
 """
 enumerate(iterable, start=0) 
@@ -393,8 +395,6 @@ def countChar(file, var):
     """   
     f = open(file, "r").read()
     return int(f.count(var))
-    
-    f.close()
 
 ANSWER = countChar("httpd-access.txt", ".")
 
@@ -412,19 +412,21 @@ string you found.
 Write your code below and put the answer into the variable ANSWER.
 """
 
-def findChars(file, lineNumber, index1, index2):	
-    f = open(file)
-    for i, line in enumerate(f):
-        if i == lineNumber - 1:
-            return line[index1:index2+1]
+def findChars(file, lineNumber, index1, index2):
+    """
+    Slice a certain line in the file
+    """ 
+    with open(file, 'r') as f:
+        for i, line in enumerate(f):
+            if i == lineNumber - 1:
+                return line[index1:index2+1]
             break
-    f.close()
 
 ANSWER = findChars("httpd-access.txt", 637, 65, 75)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.5", ANSWER, False))
+print(dbwebb.assertEqual("2.5", ANSWER, True))
 
 """
 Exercise 2.6 

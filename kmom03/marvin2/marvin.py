@@ -450,6 +450,16 @@ def todaysMi():
     
     print(dateToday, timeNow, howIsMi, visits, beer)
 
+def shuffleWord():
+    """
+    Return a given word randomly shuffled
+    """
+
+    word = getInputFromUser("Mata in ett ord: ", lambda inputText: inputText)
+    wordShuffled = ''.join(random.sample(word, len(word)))
+
+    print("Omkastade ordet: ", wordShuffled)
+
 def main():
     """
     This is the main method, I call it main by convention.
@@ -492,6 +502,8 @@ def main():
             guessNumber()
         elif choice == "13":
             todaysMi()
+        elif choice == "14":
+            shuffleWord()
         else:
             print("Du kan bara välja från menyn . ")          
             
