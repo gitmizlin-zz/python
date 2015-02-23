@@ -28,6 +28,26 @@ print("")
 content = """
 Min Redovisnings-sida
 ==============================================================================
+Kmom03:
+------------------------------------------------------------------------------
+- Har du programmerat med filhantering tidigare, känns det lätt eller svårt?
+
+Nej, jag har aldrig gjort det tidigare, om man räknar bort "include"-functionen i php. Hade lite svårt med att välja en funktion mellan t ex "with open(file, "r") as f:" och "f = open(file, "r").read()". Det tog också lite tid innan jag lyckades med att ta fram endast det jag ville från filen, men ändå kändes det okej. 
+
+- Vad tycker du om video som läromedel, tycker du att de tillför något som läromedel?
+
+Det är bra när man inte har kvar någon energi att googla och läsa. Däremot så känns det ganska långsamt och redundant när man inte har tid och känner sig stressad. Tycker inte att videorna innehåller särskillt mycket information med tanke på längden av dem. Vore kanske bättre med fler korta videor? Jag känner inte för att titta på något som är 10 min långt när jag inte är helt säker på om det innehåller exakt det jag vill veta. I alla fall så blir det en hel del googlande innan jag börjar titta på en video.
+
+- Du har gjort din första modul i Python, känns strukturen bra?
+
+Ja, hittills tycker jag att det går oej. Övningarna är lagom svåra men jag har lyckats klarat av dem. Tycker också att de är väldigt givande, lärorika och roliga. 
+
+- Vad tyckte du om de olika uppgifterna? Hur tänkte du när du utförde dem? Var de utmanande eller lätta?
+
+Jag fann uppgifterna lagom utmanande. Jag blir fast i felhanteringarna då och då men det känns ändå mycket roligt.Beskrivningen av den tredje Marvin-uppgiften med dagens datum m.m. känndes dock lite oklar. Jag var inte säker på om hur en ny textfil skulle skapas, om strängerna t ex skulle vara i en lista eller i en lång mening. Jag tog den enklaste metoden att sätta varje sträng i lines med ingen annan data.
+
+
+==============================================================================
 Kmom02:
 ------------------------------------------------------------------------------
 Detta moment var väldigt kul. Jag tyckte verkligen om att lösa många små problem. Det var mycket roligare än att jobba med miljön eller ladda upp och ner något hela tiden (dock vet jag att allt sånt är viktigt).
