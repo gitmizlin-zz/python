@@ -329,9 +329,8 @@ def findLine(file, integer):
     """    
     with open(file, "r") as f:
         for i, line in enumerate(f):
-            if i == integer - 1:
-                return int(line[-5:-1])
-            break
+            if i == integer -1:
+                return int(line[-5:-1]) # return int(line[-5:-1])
 
 """
 enumerate(iterable, start=0) 
@@ -420,13 +419,12 @@ def findChars(file, lineNumber, index1, index2):
         for i, line in enumerate(f):
             if i == lineNumber - 1:
                 return line[index1:index2+1]
-            break
 
 ANSWER = findChars("httpd-access.txt", 637, 65, 75)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.5", ANSWER, True))
+print(dbwebb.assertEqual("2.5", ANSWER, False))
 
 """
 Exercise 2.6 
@@ -464,7 +462,7 @@ ANSWER = sumLastElement("httpd-access.txt")
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.6", ANSWER, True))
+print(dbwebb.assertEqual("2.6", ANSWER, False))
 
 
 dbwebb.exitWithSummary()
