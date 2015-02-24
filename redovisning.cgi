@@ -40,7 +40,7 @@ Det är bra när man inte har kvar någon energi att googla och läsa. Däremot 
 
 - Du har gjort din första modul i Python, känns strukturen bra?
 
-Ja, hittills tycker jag att det går oej. Övningarna är lagom svåra men jag har lyckats klarat av dem. Tycker också att de är väldigt givande, lärorika och roliga. 
+Ja, hittills tycker jag att det går okej. Övningarna är lagom svåra men jag har lyckats klarat av dem. Tycker också att de är väldigt givande, lärorika och roliga. 
 
 - Vad tyckte du om de olika uppgifterna? Hur tänkte du när du utförde dem? Var de utmanande eller lätta?
 
