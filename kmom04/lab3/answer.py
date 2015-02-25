@@ -35,7 +35,7 @@ def listConcatenetion (list1, list2):
     """
     Concatenate two lists.
     """
-	return list1 + list2
+    return list1 + list2
 
 a = ["ozelot", "Berenger"]
 b = ["lion", "desk"]
@@ -83,9 +83,9 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 def replaceList(listName, index, word):
-	"""
-	Replace an element in a list by index.
-	"""
+    """
+    Replace an element in a list by index.
+    """
     listName[index-1] = str(word)
 
     return listName
@@ -238,7 +238,7 @@ Write your code below and put the answer into the variable ANSWER.
 def getAverageFromList(listName):
 
     total = sum(listName)
-    return "{0:.2f}".format(total/len(listName))
+    return "{0:.1f}".format(total/len(listName))
 
 myList = [45, 22, 2, 498, 78]
 
@@ -326,17 +326,18 @@ and third element with 'green, purple'. Answer with the modified list.
 
 Write your code below and put the answer into the variable ANSWER.
 """
-def replaceElements(listName, var):
+def replaceElements(listName, var1, var2):
     """
     Replace elements in a list
     """
-    listName[1:2] =  var
+    listName[1:2] = [var1, var2]
     return listName
 
 myList = ["dvd", "mp3", "blu-ray", "vhs", "cd"]
-myVar = "green, purple"
+myVar1 = "green"
+myVar2 = "purple"
 
-ANSWER = replaceElements(myList, myVar)
+ANSWER = replaceElements(myList, myVar1, myVar2)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -351,11 +352,18 @@ elements with 'green, purple'. Answer with the modified list.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+def replaceLastElements(listName, var1, var2):
+    """
+    Replace the last two elements in a list
+    """
+    listName[-2:] = [var1, var2]
+    return listName
 
+myList = ["dvd", "mp3", "blu-ray", "vhs", "cd"]
+myVar1 = "green"
+myVar2 = "purple"
 
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = replaceLastElements(myList, myVar1, myVar2)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -370,11 +378,17 @@ Use slice on the list [dvd, mp3, blu-ray, vhs, cd] and insert the words
 Write your code below and put the answer into the variable ANSWER.
 """
 
+def InsertElements(listName, var1, var2, n):
+    """
+    Insert elements in a list
+    """
+    listName.insert(n, var1)
+    listName.insert(n+1, var2)
+    return listName
 
+myList = ["dvd", "mp3", "blu-ray", "vhs", "cd"]
 
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = InsertElements(myList, "green", "purple", 3)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -388,12 +402,16 @@ element. Answer with the modified list.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def deleteElement(listName):
+    """
+    Delete the first element from a list.
+    """
+    del listName[0]
+    return listName
 
+myList = ["tree", "stone", "grass", "water", "sky"]
 
-
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = deleteElement(myList)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -407,12 +425,17 @@ second and third element. Answer with the modified list.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def deleteElements(listName):
+    """
+    Delete the second and third elements from a list.
+    """
+    del listName[1:3]
+    
+    return listName
 
+myList = ["tree", "stone", "grass", "water", "sky"]
 
-
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = deleteElements(myList)    
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -427,16 +450,22 @@ of 'list1 is list2'.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def compareLists():
+    """
+    Compare two identical lists.
+    """
 
+    list1 = ["a", "b", "c", "d", "e"] 
+    list2 = ["a", "b", "c", "d", "e"] 
 
+    if list1 == list2:  
+        return "list1 is list2"
 
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = compareLists()
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.11", ANSWER, False))
+print(dbwebb.assertEqual("2.11", ANSWER, True))
 
 """
 Exercise 2.12 
@@ -447,12 +476,18 @@ is list3'.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def compareListAndVar():
+    """
+    Compare two identical lists.
+    """
 
+    list1 = ["a", "b", "c", "d", "e"] 
+    list3 = list1
 
+    if list3 == list1:  
+        return "list1 is list3"
 
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = compareListAndVar()
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -466,7 +501,31 @@ to 'z'. Answer with 'list3'.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def changeElement():
+    """
+    Change the first element in the list.
+    """
 
+    list1 = ["a", "b", "c", "d", "e"]
+    list1[0] = "z"
+    list3 = list1
+
+    return  list3
+
+ANSWER = changeElement()
+
+def compareListAndVar():
+    """
+    Compare two identical lists.
+    """
+
+    list1 = ["a", "b", "c", "d", "e"] 
+    list3 = list1
+
+    if list3 == list1:  
+        return "list1 is list3"
+
+ANSWER = compareListAndVar()
 
 
 

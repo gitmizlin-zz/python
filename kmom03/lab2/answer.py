@@ -257,7 +257,7 @@ ANSWER = formatOperator("grandma", 42, "cows")
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("1.12", ANSWER, True))
+print(dbwebb.assertEqual("1.12", ANSWER, False))
 
 """
 Exercise 1.13 
@@ -341,7 +341,7 @@ ANSWER = findLine("httpd-access.txt", 821)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.2", ANSWER, True))
+print(dbwebb.assertEqual("2.2", ANSWER, False))
 
 """
 Exercise 2.3 
