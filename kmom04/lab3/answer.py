@@ -382,10 +382,10 @@ def InsertElements(listName, var1, var2, n):
     """
     Insert elements in a list
     """
-    listName.insert(n, var1)
-    listName.insert(n+1, var2)
+       
+    listName[n:n] = [var1, var2]
     return listName
-
+    
 myList = ["dvd", "mp3", "blu-ray", "vhs", "cd"]
 
 ANSWER = InsertElements(myList, "green", "purple", 3)
