@@ -238,7 +238,7 @@ Write your code below and put the answer into the variable ANSWER.
 def getAverageFromList(listName):
 
     total = sum(listName)
-    return "{0:.1f}".format(total/len(listName))
+    return float("{0:.1f}".format(total/len(listName)))
 
 myList = [45, 22, 2, 498, 78]
 
@@ -246,7 +246,7 @@ ANSWER = getAverageFromList(myList)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.2", ANSWER, False))
+print(dbwebb.assertEqual("2.2", ANSWER, True))
 
 """
 Exercise 2.3 
@@ -330,7 +330,7 @@ def replaceElements(listName, var1, var2):
     """
     Replace elements in a list
     """
-    listName[1:2] = [var1, var2]
+    listName[1:3] = [var1, var2]
     return listName
 
 myList = ["dvd", "mp3", "blu-ray", "vhs", "cd"]
@@ -385,7 +385,7 @@ def InsertElements(listName, var1, var2, n):
        
     listName[n:n] = [var1, var2]
     return listName
-    
+
 myList = ["dvd", "mp3", "blu-ray", "vhs", "cd"]
 
 ANSWER = InsertElements(myList, "green", "purple", 3)
@@ -452,20 +452,19 @@ Write your code below and put the answer into the variable ANSWER.
 """
 def compareLists():
     """
-    Compare two identical lists.
+    Compare two lists.
     """
 
     list1 = ["a", "b", "c", "d", "e"] 
     list2 = ["a", "b", "c", "d", "e"] 
 
-    if list1 == list2:  
-        return "list1 is list2"
-
+    return list1 is list2
+        
 ANSWER = compareLists()
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.11", ANSWER, True))
+print(dbwebb.assertEqual("2.11", ANSWER, False))
 
 """
 Exercise 2.12 
@@ -484,8 +483,7 @@ def compareListAndVar():
     list1 = ["a", "b", "c", "d", "e"] 
     list3 = list1
 
-    if list3 == list1:  
-        return "list1 is list3"
+    return list1 is list3
 
 ANSWER = compareListAndVar()
 
@@ -505,32 +503,14 @@ def changeElement():
     """
     Change the first element in the list.
     """
-
+    
     list1 = ["a", "b", "c", "d", "e"]
     list1[0] = "z"
     list3 = list1
-
+    
     return  list3
 
 ANSWER = changeElement()
-
-def compareListAndVar():
-    """
-    Compare two identical lists.
-    """
-
-    list1 = ["a", "b", "c", "d", "e"] 
-    list3 = list1
-
-    if list3 == list1:  
-        return "list1 is list3"
-
-ANSWER = compareListAndVar()
-
-
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -553,12 +533,16 @@ the sorted list.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def sortListMultiply(listName):
+	"""
+	Sort and multiply elements.
+	"""
 
+	listName.sort()
+	return [x * 10 for x in listName]
 
-
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+myList = [45, 22, 2, 498, 78]
+ANSWER = sortListMultiply(myList)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -574,16 +558,28 @@ descending.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+def modifyAndSortElements(listName):
+    """
+    Modify numbers and sort them in nuberical descending order.
+    """
+    newList = []
+    for item in listName:
+        if item % 2 == 0:
+            item = item * 2
+            newList.append(item)
+        else:
+        	item = item + 7
+        	newList.append(item)
 
+    return sorted(newList, reverse=True)
 
+myList = [45, 22, 2, 498, 78]
 
-
-
-ANSWER = "Replace this text with the answer or the variable holding it."
+ANSWER = modifyAndSortElements(myList)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("3.2", ANSWER, False))
+print(dbwebb.assertEqual("3.2", ANSWER, True))
 
 
 dbwebb.exitWithSummary()
