@@ -8,12 +8,11 @@ You should add functinoality to Mi.
 
 """
 import marvin 
-import sys
 
 # Python 2.x.x "input" command will evaluate input, which is insecure and a different behavior from Python 3.x.x
-if sys.version_info.major != 3:
-    print("Please run program with Python v3.")
-    sys.exit(0)
+# if sys.version_info.major != 3:
+#     print("Please run program with Python v3.")
+#     sys.exit(0)
 
 def main():
     """
@@ -23,45 +22,45 @@ def main():
     function.
     """
     while True:
-        menu()
+        marvin.menu()
         choice = input("--> ")
         if choice == "q":
             print("Hejdå!")
             return  
         elif choice == "0":
-            presentation()      
+            marvin.presentation()      
         elif choice == "1":
-            yearToSecond()
+            marvin.yearToSecond()
         elif choice == "2":
-            weightMoon()
+            marvin.weightMoon()
         elif choice == "3":
-            minutesToHours()
+            marvin.minutesToHours()
         elif choice == "4":
-            celciusToFahrenheit()   
+            marvin.celciusToFahrenheit()   
         elif choice == "5":
-            wordMultiply()
+            marvin.wordMultiply()
         elif choice == "6":
-            randomNumbers()
+            marvin.randomNumbers()
         elif choice == "7":
-            sumAndAverage()
+            marvin.sumAndAverage()
         elif choice == "8":
-            pointToGrade()
+            marvin.pointToGrade()
         elif choice == "9":
-            getCircleArea()
+            marvin.getCircleArea()
         elif choice == "10":
-            getHypotenuse()
+            marvin.getHypotenuse()
         elif choice == "11":
-            numberComparison()
+            marvin.numberComparison()
         elif choice == "12":
-            guessNumber()
+            marvin.guessNumber()
         elif choice == "13":
-            todaysMi()
+            marvin.todaysMi()
         elif choice == "14":
-            shuffleWord()
+            marvin.shuffleWord()
         else:
             print("Du kan bara välja från menyn . ")          
             
         input("\nPress enter to continue...")
 
 if __name__ == "__main__":
-    main()
+    marvin.main()

@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-import sys
+"""
+Mi with a simple menu to start up with.
+Mi doesn't do anything, just presents a menu with some choices.
+You should add functinoality to Mi.
+
+"""
 import math
 from random import randint
 import random
