@@ -57,10 +57,12 @@ def main():
             marvin.todaysMi()
         elif choice == "14":
             marvin.shuffleWord()
+        elif choice == "15":
+            marvin.quote()   
         else:
             print("Du kan bara välja från menyn . ")          
             
         input("\nPress enter to continue...")
 
 if __name__ == "__main__":
-    marvin.main()
+    main()

@@ -51,6 +51,8 @@ def menu():
     print("14) Kasta om bokstäver. Mi ska be dig skriva in ett ord som "
           "sedan slumpmässigt kastas om. Det omkastade ordet ska sedan " 
           "skrivas ut.")
+    print("15) Be Mi om ett citat genom att använda ordet 'citat'. "
+          "Mi ska presentera ett slumpmässigt citat från boken 'Liftarens Guide till Galaxen'.")
     print("q) Quit.")
 
 def getInputFromUser(inputText, verifier, error=None):
@@ -442,6 +444,18 @@ def shuffleWord():
     wordShuffled = ''.join(random.sample(word, len(word)))
 
     print("Omkastade ordet: ", wordShuffled)
+
+def quote():
+    """
+    Return a line from a file
+    """
+    searchText = "citat"
+    text = getInputFromUser("Mata in en mening som innehåller ordet 'citat': ", lambda inputText: inputText)
+    if searchText in text:
+        quoteFetched = random.choice(open('quotes.txt').readlines())
+        print("Citat: ", quoteFetched)
+    else:
+        quote()
 
 def meImage():
     """
