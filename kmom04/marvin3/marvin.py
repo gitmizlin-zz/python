@@ -10,6 +10,7 @@ import math
 from random import randint
 import random
 import datetime
+import csv
 
 def menu():
     """
@@ -51,8 +52,11 @@ def menu():
     print("14) Kasta om bokstäver. Mi ska be dig skriva in ett ord som "
           "sedan slumpmässigt kastas om. Det omkastade ordet ska sedan " 
           "skrivas ut.")
-    print("15) Be Mi om ett citat genom att använda ordet 'citat'. "
+    print("15) Be Mi om ett citat genom att använda hälsningsordeen som 'hej', 'hello', 'hi' m.m."
           "Mi ska presentera ett slumpmässigt citat från boken 'Liftarens Guide till Galaxen'.")
+    print("16) Mi har ett inventory där hon kan bära saker. Genom att fråga henne så ska hon kunna: "
+          "Visa vad som finns i inventoryt (visa), berätta hur många saker hon bär på (antal), "
+          "plocka upp saker du anger (plocka) och kasta bort saker du anger (kasta).")
     print("q) Quit.")
 
 def getInputFromUser(inputText, verifier, error=None):
@@ -449,15 +453,47 @@ def quote():
     """
     Return a line from a file
     """
-    searchText = "citat"
-    text = getInputFromUser("Mata in en mening som innehåller ordet 'citat': ", lambda inputText: inputText)
-    text = text.lower()
     
-    if searchText in text:
-        quoteFetched = random.choice(open('quotes.txt').readlines())
-        print("Citat: ", quoteFetched)
+    words = ["hello", "hi", "hey", "hej", "hallåj", "hejsan"]
+
+    # Assign multiple words to "words" as a list or a tuple.
+
+    text = getInputFromUser("Mata in en mening som innehåller något hälsningsord som 'hej', 'hi' eller 'hello' m.m. : ", lambda inputText: inputText)
+    text = text.lower()
+
+    def text_contains_any_of(text, words):
+        for term in words:
+            if term in text:
+                return True
+        return False
+
+    if text_contains_any_of(text, words):
+        with open('quotes.txt') as fh:
+            line_fetched = random.choice(fh.readlines())
+        print("Citat: ", line_fetched)
     else:
         quote()
+
+
+def inventory():
+    """
+    Show, count, pick up and remove items in a list.
+    """
+
+    def inventoryMenu():
+        """
+        Display the inventory menu with the options that Mi can do.
+        """
+        
+        print(chr(27) + "[2J" + chr(27) + "[;H")
+        print("Välj ett nummer från inventory-menyn.\n") 
+        print("0)  Tillbaka till huvudmenyn")
+        print("1) Mi ska visa vad som finns i inventoryt.")
+        print("2) Mi ska berätta hur många saker hon bär på.")
+        print("3) Mi ska plocka upp saker du anger.")
+        print("4) Mi ska kasta bort saker du anger")
+    
+ 
 
 def meImage():
     """

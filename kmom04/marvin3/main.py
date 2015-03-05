@@ -58,7 +58,9 @@ def main():
         elif choice == "14":
             marvin.shuffleWord()
         elif choice == "15":
-            marvin.quote()   
+            marvin.quote()
+        elif choice == "16":
+            marvin.inventory()
         else:
             print("Du kan bara välja från menyn . ")          
             
