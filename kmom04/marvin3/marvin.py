@@ -451,6 +451,8 @@ def quote():
     """
     searchText = "citat"
     text = getInputFromUser("Mata in en mening som innehåller ordet 'citat': ", lambda inputText: inputText)
+    text = text.lower()
+    
     if searchText in text:
         quoteFetched = random.choice(open('quotes.txt').readlines())
         print("Citat: ", quoteFetched)
