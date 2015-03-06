@@ -7,10 +7,10 @@ Mi doesnt do anything, just presents a menu with some choices.
 You should add functinoality to Mi.
 
 """
-import marvin 
+import marvin
 
 # Python 2.x.x "input" command will evaluate input, which is insecure and a different behavior from Python 3.x.x
-# if sys.version_info.major != 3:
+# if sys.version_info.major != 3:   
 #     print("Please run program with Python v3.")
 #     sys.exit(0)
 
@@ -37,7 +37,7 @@ def main():
             marvin.minutesToHours()
         elif choice == "4":
             marvin.celciusToFahrenheit()   
-        elif choice == "5":
+        elif choice == "5": 
             marvin.wordMultiply()
         elif choice == "6":
             marvin.randomNumbers()

@@ -479,21 +479,58 @@ def inventory():
     """
     Show, count, pick up and remove items in a list.
     """
-
-    def inventoryMenu():
-        """
-        Display the inventory menu with the options that Mi can do.
-        """
-        
-        print(chr(27) + "[2J" + chr(27) + "[;H")
-        print("Välj ett nummer från inventory-menyn.\n") 
-        print("0)  Tillbaka till huvudmenyn")
-        print("1) Mi ska visa vad som finns i inventoryt.")
-        print("2) Mi ska berätta hur många saker hon bär på.")
-        print("3) Mi ska plocka upp saker du anger.")
-        print("4) Mi ska kasta bort saker du anger")
-    
  
+    print(chr(27) + "[2J" + chr(27) + "[;H")
+    print("Välj ett nummer från inventory-menyn.\n") 
+    print("0) Gå tillbaka till huvudmenyn.")
+    print("1) Mi ska visa vad som finns i inventoryt.")
+    print("2) Mi ska berätta hur många saker hon bär på.")
+    print("3) Mi ska plocka upp saker du anger.")
+    print("4) Mi ska kasta bort saker du anger.")
+    
+    def choose():
+        print("Välj ett nummber från menyn.")
+                    
+    
+    with open("inventory.txt", "r") as f:
+        items = f.read()
+        items = items.split(",")
+        last_item = items[-1]
+        items_ex_last_item = items[:-1]
+        print(items)
+
+    while True:
+        choice = input("--> ")
+
+        if choice == "0":
+            return
+
+        elif choice == "1":  
+            print("Mi har " + ', '.join(items_ex_last_item) + " och " + last_item + ".")
+            choose()
+
+        elif choice == "2":
+            count_items =  len(items)
+            print("Mi har " + str(count_items) + " varor i inventoryt.")
+            choose()
+            
+        elif choice == "3":            
+            pickup_item = getInputFromUser("Ange en vara du vill att Mi ska plocka upp. --> ", lambda inputText: inputText, "Du måste mata en vara.")
+            if pickup_item.lower().strip() not in items:
+                items.append(pickup_item)
+                print(pickup_item + " har nu adderat i inventoryt. Mi har nu " + ', '.join(items_ex_last_item) + " och " + last_item + ".")
+
+            else:
+                print("Mi har redan varan du angett.")
+
+            choose()
+            
+        elif choice == "4":
+            print("4")
+            
+        else: 
+            print("Du kan bara välja mellan 0 och 4. ")
+
 
 def meImage():
     """
