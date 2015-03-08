@@ -28,8 +28,8 @@ def main():
             print("Hejdå!")
             return  
         elif choice == "0":
-            marvin.presentation()      
-        elif choice == "1":d
+            marvin.presentation()
+        elif choice == "1":
             marvin.yearToSecond()
         elif choice == "2":
             marvin.weightMoon()

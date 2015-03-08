@@ -489,11 +489,11 @@ def inventory():
     print("4) Mi ska kasta bort saker du anger.")
     
     def choose():
-        print("Välj ett nummber från menyn.")
-                    
+        print("Välj ett nummber från inventrymenyn.")                    
     
-    with open("inventory.txt", "a+") as f:
+    with open("inventory.txt", "r+") as f:
         items = f.read()
+        items = items.replace('\n', '').replace(' ', '')
         items = items.split(",")
         last_item = items[-1]
         items_ex_last_item = items[:-1]
@@ -515,35 +515,21 @@ def inventory():
             choose()
             
         elif choice == "3":
-            with open("inventory.txt", "a+") as f:
-                items = f.read()
-                items = items.split(",")
-                
-                while True:                    
-                    pickup_item = getInputFromUser("Ange en vara du vill att Mi ska plocka upp. --> ", lambda inputText: inputText, "Du måste mata tack en vara.")
+            while True:
+                if len(items) < 7:                  
+                    pickup_item = getInputFromUser("Ange en vara du vill att Mi ska plocka upp. --> ", lambda inputText: inputText, "Mata in en vara.")
                     pickup_item = pickup_item.lower().strip()
-                    print(pickup_item)
                     items.append(pickup_item)
-
-                    if len(items) < 8:
+                    with open("inventory.txt", "w+") as f:
+                        f.write(','.join(items))
                         last_item = items[-1]
                         items_ex_last_item = items[:-1]
+                        print("Mi har pockat upp " + pickup_item + " och nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
+                else:
+                    print("Mi kan inte bära på fler saker.")
+                    break
+            choose()
 
-                        if len(items) == 0:
-                            f = f.write(pickup_item)
-                        else:
-                            f = f.write("," + pickup_item)
-
-                        if len(items) == 1:
-                            print("Mi har " + items + "i inventoryt.")
-                        else:
-                            print("Mi har " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
-                            
-                    else:
-                        print("Mi kan inte bara bära på fler saker. Kasta bort en vara först.")
-                        return
-                
-          
         elif choice == "4":
             while True:
                 with open("inventory.txt", "a+") as f:
