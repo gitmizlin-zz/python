@@ -29,7 +29,7 @@ def main():
             return  
         elif choice == "0":
             marvin.presentation()      
-        elif choice == "1":
+        elif choice == "1":d
             marvin.yearToSecond()
         elif choice == "2":
             marvin.weightMoon()
