@@ -524,7 +524,11 @@ def inventory():
                         f.write(','.join(items))
                         last_item = items[-1]
                         items_ex_last_item = items[:-1]
-                        print("Mi har pockat upp " + pickup_item + " och nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
+                        
+                        if len(items) == 1:
+                            print("Mi har plockat upp " + pickup_item + " och nu har hon " + pickup_item + " i inventoryt.")
+                        else:
+                            print("Mi har plockat upp " + pickup_item + " och nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
                 else:
                     print("Mi kan inte bära på fler saker.")
                     break
@@ -538,33 +542,31 @@ def inventory():
                 else:
                     with open("inventory.txt", "a+") as f:
                             remove_item = getInputFromUser("Ange en vara du vill att Mi ska kasta bort. --> ", lambda inputText: inputText, "Du måste mata in en vara.")
-                            remove_item = remove_item.lower().strip()
-
-                            # back_to_menu = getInputFromUser("Skriv 'menu' för att gå tillbaks till inventorymenyn. --> ", lambda inputText: inputText, "Du måste mata in en vara.")
-                            # back_to_menu = back_to_menu.lower().strip()
-
-                            # if back_to_menu == "menu":
-                            #     choose()         
+                            remove_item = remove_item.lower().strip()     
 
                             if remove_item in items:
                                 remove_item_index = items.index(remove_item)
                                 items.remove(items[remove_item_index])
 
-                                with open("inventory.txt", "w+") as f:
-                                    f.write(','.join(items))
-                                    
-                                    if len(items) == 1:
-                                        print("Mi har kastat bort " + remove_item + ".") 
-                                        print("Nu har hon " + items[-1] + " i inventoryt.")
-                                    elif len(items) <= 7:
-                                        last_item = items[-1]
-                                        items_ex_last_item = items[:-1]
+                                with open("inventory.txt", "w+") as f:                      
                                         
+                                    if len(items) == 0:
+                                        f.write(''.join(items)
                                         print("Mi har kastat bort " + remove_item + ".") 
-                                        print("Nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.") 
-                                    elif len(items) == 0:
-                                        print("Det finns inga varor i inventryt.")
+                                        print("Det finns inga varor i inventoryt.")
+                                    
+                                    else:
+                                        f.write(','.join(items))
 
+                                        if len(items) == 1:
+                                            print("Mi har kastat bort " + remove_item + ".") 
+                                            print("Nu har hon " + items[0] + " i inventoryt.")
+
+                                        else:    
+                                            last_item = items[-1]
+                                            items_ex_last_item = items[:-1]                                    
+                                            print("Mi har kastat bort " + remove_item + ".") 
+                                            print("Nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
                             else:
                                 print("Det finns ingen vara du angett i inventoryt.")  
                 
