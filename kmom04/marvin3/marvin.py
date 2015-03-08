@@ -551,7 +551,7 @@ def inventory():
                                 with open("inventory.txt", "w+") as f:                      
                                         
                                     if len(items) == 0:
-                                        f.write(''.join(items)
+                                        f.write(''.join(items))
                                         print("Mi har kastat bort " + remove_item + ".") 
                                         print("Det finns inga varor i inventoryt.")
                                     
