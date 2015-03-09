@@ -486,10 +486,10 @@ def inventory():
     print("1) Mi ska visa vad som finns i inventoryt.")
     print("2) Mi ska berätta hur många saker hon bär på.")
     print("3) Mi ska plocka upp saker du anger.")
-    print("4) Mi ska kasta bort saker du anger.")
-    
+    print("4) Mi ska kasta bort saker du anger.")    
+
     def choose():
-        print("Välj ett nummber från inventrymenyn.")                    
+        print("Välj från 0-4.")        
     
     with open("inventory.txt", "r+") as f:
         items = f.read()
@@ -546,8 +546,12 @@ def inventory():
                         
                         if len(items) == 1:
                             print("Mi har plockat upp " + pickup_item + " och nu har hon " + pickup_item + " i inventoryt.")
+                            choose()
+                            break
                         else:
                             print("Mi har plockat upp " + pickup_item + " och nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
+                            choose()
+                            break
                 else:
                     print("Mi kan inte bära på fler saker.")
                     choose() 
@@ -555,15 +559,17 @@ def inventory():
 
         elif choice == "4":
             while True:
+                print(items)
                 if len(items) == 0:
-                    print("Det finns inga varor i inventryt.")
+                    print("Det finns inga varor i inventoryt.")
                     choose()
                     break
 
                 else:
                     with open("inventory.txt", "a+") as f:
                             remove_item = getInputFromUser("Ange en vara du vill att Mi ska kasta bort. --> ", lambda inputText: inputText, "Du måste mata in en vara.")
-                            remove_item = remove_item.lower().strip()     
+
+                            remove_item = remove_item.lower().strip()
 
                             if remove_item in items:
                                 remove_item_index = items.index(remove_item)
@@ -574,7 +580,8 @@ def inventory():
                                     if len(items) == 0:
                                         f.write(''.join(items))
                                         print("Mi har kastat bort " + remove_item + ".") 
-                                        print("Det finns inga varor i inventoryt.")
+                                        choose()
+                                        break
                                     
                                     else:
                                         f.write(','.join(items))
@@ -582,12 +589,16 @@ def inventory():
                                         if len(items) == 1:
                                             print("Mi har kastat bort " + remove_item + ".") 
                                             print("Nu har hon " + items[0] + " i inventoryt.")
+                                            choose()
+                                            break
 
                                         else:    
                                             last_item = items[-1]
                                             items_ex_last_item = items[:-1]                                    
                                             print("Mi har kastat bort " + remove_item + ".") 
                                             print("Nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
+                                            choose()
+                                            break
                             else:
                                 print("Det finns ingen vara du angett i inventoryt.")  
                 
