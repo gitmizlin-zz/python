@@ -495,8 +495,6 @@ def inventory():
         items = f.read()
         items = items.replace('\n', '').replace(' ', '')
         items = items.split(",")
-        last_item = items[-1]
-        items_ex_last_item = items[:-1]
         print(items)
 
     while True:
@@ -505,13 +503,34 @@ def inventory():
         if choice == "0":
             return
 
-        elif choice == "1":  
-            print("Mi har " + ', '.join(items_ex_last_item) + " och " + last_item + ".")
+        elif choice == "1":
+            items = [i for i in items if i]
+            if items:
+
+                if len(items) == 1:
+                    print("Mi har {}.".format(items[0]))
+
+                if len(items) > 1:
+                    last_item = items[-1]
+                    items_ex_last_item = items[:-1]
+                    print("Mi har " + ', '.join(items_ex_last_item) + " och " + last_item + ".")
+            else:
+                print("Det finns inga varor i inventoryt.")
+            
             choose()
 
         elif choice == "2":
             count_items =  len(items)
-            print("Mi har " + str(count_items) + " varor i inventoryt.")
+
+            if count_items == 0:
+                print("Det finns inga varor i inventoryt.")
+
+            elif count_items == 1:
+                print("Mi har " + str(count_items) + " vara i inventoryt.")
+
+            else:  
+                print("Mi har " + str(count_items) + " varor i inventoryt.")     
+            
             choose()
             
         elif choice == "3":
@@ -531,13 +550,15 @@ def inventory():
                             print("Mi har plockat upp " + pickup_item + " och nu har hon " + ', '.join(items_ex_last_item) + " och " + last_item + " i inventoryt.")
                 else:
                     print("Mi kan inte bära på fler saker.")
-                    break
-            choose()
+                    choose() 
+                    break                               
 
         elif choice == "4":
             while True:
                 if len(items) == 0:
                     print("Det finns inga varor i inventryt.")
+                    choose()
+                    break
 
                 else:
                     with open("inventory.txt", "a+") as f:
