@@ -7,7 +7,6 @@ Testing out the curses lib.
 
 import curses
 
-
 def main(scr):
     """
     Draw a border around the screen, move around using the cursor and leave a mark
@@ -44,9 +43,60 @@ def main(scr):
     x = xc
     y = yc
     ch = 'o'
-    
+
+    filename = 'border.txt'
+
+    def createMatrix(y, x, filler):
+        """
+        Create a two-dimensional array and return it. 
+        """
+        return [[filler for _ in range(x)] for _ in range(y)]
+
+
+    def printMatrix(matrix):
+        """
+        Print the content of the matrix. 
+        """
+        for row in matrix:
+            print("".join(row))
+
+
+    def saveMatrix(matrix):
+        """
+        Save the content of the matrix to a file. Do this by joining all items in the 
+        list and create a string-representing the row and write that string to the file.
+        Add a newline to each row. 
+        """
+        with open(filename, 'w') as f:
+            for row in matrix:
+                f.write("".join(row) + '\n') 
+
+    def loadMatrix(matrix):
+        """
+        Load the content of the matrix from a file. Do this by reading the lines from the file
+        and splitting them into a list by characters. 
+        Ignore the newline at each row. 
+        """
+        with open(filename, 'r') as f:
+
+            # with \n
+            #content = f.readlines()
+            
+            # without \n
+            content = f.read().splitlines()
+
+            # Update each row of the matrix and fill it by using the file content 
+            # (may need som care when file and matrix size does not match)
+            for y in range(0, y1):
+                matrix[y] = list(content[y])
+
+            printMatrix(matrix)
+
+    matrix = createMatrix(y1, x1, "-")
+
     while True:
         key = scr.getkey()
+        
         if key == 'q':
             break
         elif key == 'KEY_UP' and y > y0+1:
@@ -64,9 +114,18 @@ def main(scr):
         elif key == 'KEY_LEFT' and x <= x0+1:
             x = x
         elif key == 'KEY_RIGHT' and x >= x1-1:
-            x = x  
+            x = x 
+        elif key == 's':            
+            saveMatrix(matrix)
+        elif key == 'o':
+            loadMatrix(matrix)
+            continue
         else:
-            ch = key
+            ch = key   
+
+        # Add the character to matrix
+        matrix[y][x] = ch     
+
         # Draw out the char at cursor position
         scr.addstr(ch)
             
