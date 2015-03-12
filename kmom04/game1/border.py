@@ -52,13 +52,15 @@ def main(scr):
         """
         return [[filler for _ in range(x)] for _ in range(y)]
 
+    matrix = createMatrix(y1, x1, "_")    
+
 
     def printMatrix(matrix):
         """
         Print the content of the matrix. 
         """
         for row in matrix:
-            print("".join(row))
+            print("".join(row) + '\n')
 
 
     def saveMatrix(matrix):
@@ -71,12 +73,20 @@ def main(scr):
             for row in matrix:
                 f.write("".join(row) + '\n') 
 
+    
+
     def loadMatrix(matrix):
         """
         Load the content of the matrix from a file. Do this by reading the lines from the file
         and splitting them into a list by characters. 
         Ignore the newline at each row. 
         """
+        begin_x = x0
+        begin_y = y0
+        height = y1
+        width = x1
+        win = curses.newwin(height, width, begin_y, begin_x)
+
         with open(filename, 'r') as f:
 
             # with \n
@@ -87,12 +97,10 @@ def main(scr):
 
             # Update each row of the matrix and fill it by using the file content 
             # (may need som care when file and matrix size does not match)
-            for y in range(0, y1):
+            for y in range(0, len(matrix)):
                 matrix[y] = list(content[y])
-
-            printMatrix(matrix)
-
-    matrix = createMatrix(y1, x1, "-")
+       
+        printMatrix(matrix)
 
     while True:
         key = scr.getkey()
@@ -117,7 +125,7 @@ def main(scr):
             x = x 
         elif key == 's':            
             saveMatrix(matrix)
-        elif key == 'o':
+        elif key == 'o': 
             loadMatrix(matrix)
             continue
         else:
