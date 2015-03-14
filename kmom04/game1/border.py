@@ -17,18 +17,79 @@ def main(scr):
     Quit using 'q'.
     """
     
+    def createMatrix(y, x, filler):
+        """
+        Create a two-dimensional array and return it. 
+        """
+        return [[filler for _ in range(x)] for _ in range(y)]
+
+
+    def printMatrix(matrix):
+        """
+        Print the content of the matrix. 
+        """
+        for row in matrix:
+            print("".join(row))
+
+
+    def saveMatrix(matrix):
+        """
+        Save the content of the matrix to a file. Do this by joining all items in the 
+        list and create a string-representing the row and write that string to the file.
+        Add a newline to each row. 
+        """
+        with open(filename, 'w') as f:
+            for row in matrix:
+                f.write("".join(row) + '\n') 
+
+
+
+    def loadMatrix(matrix):
+        """
+        Load the content of the matrix from a file. Do this by reading the lines from the file
+        and splitting them into a list by characters. 
+        Ignore the newline at each row. 
+        """
+        # begin_x = xMin
+        # begin_y = yMin
+        # height = yMax
+        # width = xMax
+        # win = curses.newwin(height, width, begin_y, begin_x)
+        scr.clear()
+
+        with open(filename, 'r') as f:
+
+            # with \n
+            #content = f.readlines()
+            
+            # without \n
+            content = f.read().splitlines()
+
+            # Update each row of the matrix and fill it by using the file content 
+            # (may need som care when file and matrix size does not match)
+            for y in range(1, len(matrix)-1):
+                matrix[y] = list(content[y])
+
+        x = xc
+        y = yc
+        ch = 'o'
+
+        printMatrix(matrix)
+
+
+
     # Clear the screen of any output
     scr.clear()
 
     # Get screen dimensions
-    y1, x1 = scr.getmaxyx()
-    y1 -= 1
-    x1 -= 1
+    yMax, xMax = scr.getmaxyx()
+    yMax -= 1
+    xMax -= 1
 
-    y0, x0 = 0, 0
+    yMin, xMin = 0, 0
     
     # Get center position
-    yc, xc = (y1-y0)//2, (x1-x0)//2
+    yc, xc = (yMax - yMin) // 2, (xMax - xMin) // 2
 
     # Draw a border
     scr.border()
@@ -45,88 +106,35 @@ def main(scr):
     ch = 'o'
 
     filename = 'border.txt'
-
-    def createMatrix(y, x, filler):
-        """
-        Create a two-dimensional array and return it. 
-        """
-        return [[filler for _ in range(x)] for _ in range(y)]
-
-    matrix = createMatrix(y1, x1, "_")    
-
-
-    def printMatrix(matrix):
-        """
-        Print the content of the matrix. 
-        """
-        for row in matrix:
-            print("".join(row) + '\n')
-
-
-    def saveMatrix(matrix):
-        """
-        Save the content of the matrix to a file. Do this by joining all items in the 
-        list and create a string-representing the row and write that string to the file.
-        Add a newline to each row. 
-        """
-        with open(filename, 'w') as f:
-            for row in matrix:
-                f.write("".join(row) + '\n') 
-
     
-
-    def loadMatrix(matrix):
-        """
-        Load the content of the matrix from a file. Do this by reading the lines from the file
-        and splitting them into a list by characters. 
-        Ignore the newline at each row. 
-        """
-        begin_x = x0
-        begin_y = y0
-        height = y1
-        width = x1
-        win = curses.newwin(height, width, begin_y, begin_x)
-
-        with open(filename, 'r') as f:
-
-            # with \n
-            #content = f.readlines()
-            
-            # without \n
-            content = f.read().splitlines()
-
-            # Update each row of the matrix and fill it by using the file content 
-            # (may need som care when file and matrix size does not match)
-            for y in range(0, len(matrix)):
-                matrix[y] = list(content[y])
-       
-        printMatrix(matrix)
+    matrix = createMatrix(yMax-1, xMax-1, "-")
 
     while True:
         key = scr.getkey()
         
         if key == 'q':
             break
-        elif key == 'KEY_UP' and y > y0+1:
+        elif key == 'KEY_UP' and y > yMin+1:
             y -= 1
-        elif key == 'KEY_DOWN' and y < y1-1:
+        elif key == 'KEY_DOWN' and y < yMax-1:
             y += 1
-        elif key == 'KEY_LEFT' and x > x0+1:
+        elif key == 'KEY_LEFT' and x > xMin+1:
             x -= 1
-        elif key == 'KEY_RIGHT' and x < x1-1:
+        elif key == 'KEY_RIGHT' and x < xMax-1:
             x += 1  
-        elif key == 'KEY_UP' and y <= y0+1:
+        elif key == 'KEY_UP' and y <= yMin+1:
             y = y 
-        elif key == 'KEY_DOWN' and y >= y1-1:
+        elif key == 'KEY_DOWN' and y >= yMax-1:
             y = y
-        elif key == 'KEY_LEFT' and x <= x0+1:
+        elif key == 'KEY_LEFT' and x <= xMin+1:
             x = x
-        elif key == 'KEY_RIGHT' and x >= x1-1:
+        elif key == 'KEY_RIGHT' and x >= xMax-1:
             x = x 
         elif key == 's':            
             saveMatrix(matrix)
         elif key == 'o': 
             loadMatrix(matrix)
+            scr.refresh()
             continue
         else:
             ch = key   
@@ -142,6 +150,10 @@ def main(scr):
 
         # Redraw all items on the screen
         scr.refresh()
+
+
+    
+
 
 if __name__ == "__main__":
     print(__doc__)
