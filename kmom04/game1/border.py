@@ -77,10 +77,6 @@ def main(scr):
             for y in range(0, len(matrix)):
                 matrix[y] = list(content[y])
 
-        x = xc
-        y = yc
-        ch = 'o'
-
         printMatrix(matrix)
 
     # Clear the screen of any output
