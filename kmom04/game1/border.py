@@ -6,7 +6,6 @@ Testing out the curses lib.
 """
 
 import curses
-import sys
 
 def main(scr):
     """
