@@ -10,15 +10,15 @@ You should add functinoality to Mi.
 import marvin
 
 # Python 2.x.x "input" command will evaluate input, which is insecure and a different behavior from Python 3.x.x
-# if sys.version_info.major != 3:   
+# if sys.version_info.major != 3:
 #     print("Please run program with Python v3.")
 #     sys.exit(0)
 
 def main():
     """
     This is the main method, I call it main by convention.
-    Its an eternal loop, until q is pressed. 
-    It should check the choice done by the user and call a appropriate 
+    Its an eternal loop, until q is pressed.
+    It should check the choice done by the user and call a appropriate
     function.
     """
     while True:
@@ -26,7 +26,7 @@ def main():
         choice = input("--> ")
         if choice == "q":
             print("Hejdå!")
-            return  
+            return
         elif choice == "0":
             marvin.presentation()
         elif choice == "1":
@@ -36,8 +36,8 @@ def main():
         elif choice == "3":
             marvin.minutesToHours()
         elif choice == "4":
-            marvin.celciusToFahrenheit()   
-        elif choice == "5": 
+            marvin.celciusToFahrenheit()
+        elif choice == "5":
             marvin.wordMultiply()
         elif choice == "6":
             marvin.randomNumbers()
@@ -62,8 +62,8 @@ def main():
         elif choice == "16":
             marvin.inventory()
         else:
-            print("Du kan bara välja från menyn . ")          
-            
+            print("Du kan bara välja från menyn . ")
+
         input("\nPress enter to continue...")
 
 if __name__ == "__main__":

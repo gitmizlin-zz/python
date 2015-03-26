@@ -7,7 +7,7 @@ Mi doesnt do anything, just presents a menu with some choices.
 You should add functinoality to Mi.
 
 """
-import marvin 
+import marvin
 
 # Python 2.x.x "input" command will evaluate input, which is insecure and a different behavior from Python 3.x.x
 # if sys.version_info.major != 3:
@@ -17,8 +17,8 @@ import marvin
 def main():
     """
     This is the main method, I call it main by convention.
-    Its an eternal loop, until q is pressed. 
-    It should check the choice done by the user and call a appropriate 
+    Its an eternal loop, until q is pressed.
+    It should check the choice done by the user and call a appropriate
     function.
     """
     while True:
@@ -26,9 +26,9 @@ def main():
         choice = input("--> ")
         if choice == "q":
             print("Hejdå!")
-            return  
+            return
         elif choice == "0":
-            marvin.presentation()      
+            marvin.presentation()
         elif choice == "1":
             marvin.yearToSecond()
         elif choice == "2":
@@ -36,7 +36,7 @@ def main():
         elif choice == "3":
             marvin.minutesToHours()
         elif choice == "4":
-            marvin.celciusToFahrenheit()   
+            marvin.celciusToFahrenheit()
         elif choice == "5":
             marvin.wordMultiply()
         elif choice == "6":
@@ -58,9 +58,9 @@ def main():
         elif choice == "14":
             marvin.shuffleWord()
         else:
-            print("Du kan bara välja från menyn . ")          
-            
+            print("Du kan bara välja från menyn . ")
+
         input("\nPress enter to continue...")
 
 if __name__ == "__main__":
-    marvin.main()
+    main()
