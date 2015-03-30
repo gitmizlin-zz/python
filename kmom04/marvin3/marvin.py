@@ -16,9 +16,9 @@ def menu():
     Display the menu with the options that Mi can do.
     """
     print(chr(27) + "[2J" + chr(27) + "[;H")
-    print(meImage()) 
-    print("Välj ett nummer från menyn.\n") 
-    print("0) Presentation.") 
+    print(meImage())
+    print("Välj ett nummer från menyn.\n")
+    print("0) Presentation.")
     print("1) Ålder till sekunder. Mi ska fråga efter din ålder "
           "och sedan skriva ut hur många sekunder du minst har levt.")
     print("2) Vikt på månen. Mi ska fråga efter en vikt i kg och "
@@ -49,7 +49,7 @@ def menu():
           "hur hon mår (slumpmässigt humör), ett heltal, samt ett floattal "
           "med 3 decimaler.")
     print("14) Kasta om bokstäver. Mi ska be dig skriva in ett ord som "
-          "sedan slumpmässigt kastas om. Det omkastade ordet ska sedan " 
+          "sedan slumpmässigt kastas om. Det omkastade ordet ska sedan "
           "skrivas ut.")
     print("15) Be Mi om ett citat genom att använda hälsningsordeen som 'hej', 'hello', 'hi' m.m."
           "Mi ska presentera ett slumpmässigt citat från boken 'Liftarens Guide till Galaxen'.")
@@ -80,9 +80,9 @@ def convertToInt(value):
 
 def presentation():
     """
-    Introduce each other. 
+    Introduce each other.
     """
-    
+
     inputText = "Hej! Jag heter Mi. Vad heter du?"
     yourName = getInputFromUser(inputText, lambda inputText: inputText)
 
@@ -97,13 +97,13 @@ def yearToSecond():
 
     ageInYears = int(ageInYears)
     ageInSeconds = ageInYears * 31536000
-    print("\nDu har levt", ageInSeconds, "sekunder.")    
+    print("\nDu har levt", ageInSeconds, "sekunder.")
 
     # ageInYears = input("Hur gammal är du? ")
     # try:
     #     ageInYears = int(ageInYears)
     #     ageInSeconds = ageInYears * 31536000
-    #     print("\nDu har levt", ageInSeconds, "sekunder.")    
+    #     print("\nDu har levt", ageInSeconds, "sekunder.")
     # except:
     #     print("\nDu måste mata in en siffra.")
     #     yearToSecond()
@@ -114,16 +114,16 @@ def weightMoon():
     """
 
     weight = getInputFromUser("Ange en vikt. ", convertToInt, "Du måste mata in en siffra.")
-    
+
     weight = int(weight)
     weightOnTheMoon = "{0:.2f}".format(weight / 6)
-    print("\nVikten på månen är ca", weightOnTheMoon, "kg.") 
+    print("\nVikten på månen är ca", weightOnTheMoon, "kg.")
 
     # weight = input("Ange en vikt.  ")
     # try:
     #     weight = int(weight)
     #     weightOnTheMoon = "{0:.2f}".format(weight / 6)
-    #     print("\nVikten på månen är ca", weightOnTheMoon, "kg.")  
+    #     print("\nVikten på månen är ca", weightOnTheMoon, "kg.")
     # except:
     #     print("\nDu måste mata in en siffra.")
     #     weightMoon()
@@ -133,18 +133,18 @@ def minutesToHours():
     Convert minutes to hours.
     """
     minutes = getInputFromUser("Ange en tidslängd i minuter. ", convertToInt, "Du måste mata in en siffra.")
-    
+
     minutes = int(minutes)
     hours = round(minutes / 60)
-    minutesModulo = minutes%60 
-    print("\nTidslängden är", hours, "timmar och", minutesModulo, "minuter.")  
+    minutesModulo = minutes%60
+    print("\nTidslängden är", hours, "timmar och", minutesModulo, "minuter.")
 
     # minutes = input("Ange en tidslängd i minuter.  ")
     # try:
     #     minutes = int(minutes)
     #     hours = round(minutes / 60)
-    #     minutesModulo = minutes%60 
-    #     print("\nTidslängden är", hours, "timmar och", minutesModulo, "minuter.")  
+    #     minutesModulo = minutes%60
+    #     print("\nTidslängden är", hours, "timmar och", minutesModulo, "minuter.")
     # except:
     #     print("\nDu måste mata in en siffra.")
     # minutesToHours()
@@ -158,13 +158,13 @@ def celciusToFahrenheit():
 
     celcius = int(celcius)
     fahrenheit = celcius * 9/5 + 32
-    print("\nTemperaturen är", fahrenheit, "°F.")  
+    print("\nTemperaturen är", fahrenheit, "°F.")
 
     # celcius = input("Ange temperaturen i celcius.  ")
     # try:
     #     celcius = int(celcius)
     #     fahrenheit = celcius * 9/5 + 32
-    #     print("\nTemperaturen är", fahrenheit, "°F.")  
+    #     print("\nTemperaturen är", fahrenheit, "°F.")
     # except:
     #     print("\nDu måste mata in en siffra.")
     #     celciusToFahrenheit()
@@ -196,7 +196,7 @@ def wordMultiply():
     #                 count = count + 1
     #             break
     #         except:
-    #             print("\nDu måste mata in en siffra.") 
+    #             print("\nDu måste mata in en siffra.")
     # else:
     #     print("\n")
     #     wordMultiply()
@@ -217,11 +217,11 @@ def randomNumbers():
                 return number
             except ValueError:
                 print("Du måste mata in ett nummer.")
-                
+
     maxNumber = 0
     minNumber = 0
 
-    while maxNumber <= minNumber: 
+    while maxNumber <= minNumber:
         minNumber = getNumberFromInput("Ange ett min-nummer: ")
         maxNumber = getNumberFromInput("Ange ett max-nummer: ")
 
@@ -245,7 +245,7 @@ def sumAndAverage():
     numbers = []
 
     while True:
-        number = getInputFromUser("Mata in en siffra eller 'OK' för att sluta.", 
+        number = getInputFromUser("Mata in en siffra eller 'OK' för att sluta.",
                                   lambda number: (number.lower() == "ok" and numbers)
                                   or convertToInt(number))
 
@@ -301,19 +301,19 @@ def pointToGrade():
         while True:
             yourPoint = input(inputText)
             try:
-                yourPoint = int(yourPoint) 
+                yourPoint = int(yourPoint)
                 if yourPoint <= maxPoint and yourPoint >= 0:
                     return yourPoint
                 else:
                     print("Dina poäng måste vara ett positivt tal som är lika med eller lägre än maxpoäng.")
             except ValueError:
                 print("Du måste mata in en siffra.")
-        
+
     maxPoint = getMaxPointFromInput("Ange max-poäng: ")
     yourPoint = getYourPointFromInput("Ange dina poäng: ")
     yourPointIn100 = yourPoint * 100/maxPoint
 
-    if 90 < yourPointIn100: 
+    if 90 < yourPointIn100:
         print("Berömlig")
     elif 50 < yourPointIn100:
         print("Med beröm godkänd")
@@ -327,7 +327,7 @@ def getCircleArea():
     Return the area of a circle from a given radius.
     """
     radius = getInputFromUser("Ange en radius. ", convertToInt, "Du måste mata in en siffra.")
-    
+
     circleArea = int(radius) ** 2 * 3.14
     print("Arenan av cilkeln är " + str(circleArea) + ".")
 
@@ -335,9 +335,9 @@ def getHypotenuse():
     """
     Return the hypotenuse from given sides of a triangle.
     """
-    side1 = getInputFromUser("Ange en siffra för ena sidan av en triangel: ", 
+    side1 = getInputFromUser("Ange en siffra för ena sidan av en triangel: ",
                              convertToInt, "Du måste mata in en siffra.")
-    side2 = getInputFromUser("Ange en siffra för den andra sidan av triangeln: ", convertToInt, 
+    side2 = getInputFromUser("Ange en siffra för den andra sidan av triangeln: ", convertToInt,
                              "Du måste mata in en siffra.")
 
     side1 = int(side1)
@@ -348,14 +348,14 @@ def getHypotenuse():
 
 def numberComparison():
     """
-    Compare a given number with the previously given number and return "Greater", "Equal" or "Less". 
+    Compare a given number with the previously given number and return "Greater", "Equal" or "Less".
     """
 
     def getComparisonText(number1, number2):
         """
         Get the numbers from input text.
         """
-       
+
         try:
             if number1 and number2:
                 number1 = int(number1)
@@ -364,25 +364,25 @@ def numberComparison():
                 elif number1 > number2:
                     return "is less than"
                 elif number1 < number2:
-                    return "is greater than"                    
+                    return "is greater than"
             else:
                 return ""
-        except ValueError:  
+        except ValueError:
             pass
 
-    numbers = []    
-    
+    numbers = []
+
     i = 0
     while True:
-        number = getInputFromUser("Ange ett nummer. För att sluta," 
-                                  "skriv 'OK'. ", lambda number: (number.lower() == "ok" and numbers) 
+        number = getInputFromUser("Ange ett nummer. För att sluta,"
+                                  "skriv 'OK'. ", lambda number: (number.lower() == "ok" and numbers)
                                   or convertToInt(number))
-        
+
         if number.lower() == "ok":
             break
 
         number = int(number)
-        numbers.append(number)      
+        numbers.append(number)
 
         # if len(numbers) < 2:
         #     preNumber = ""
@@ -410,9 +410,9 @@ def guessNumber():
             i = None
             break
 
-        if inputNumber < randomNumber: 
-            print(inputNumber, "är lägre än Mis siffra.")            
-        elif inputNumber > randomNumber: 
+        if inputNumber < randomNumber:
+            print(inputNumber, "är lägre än Mis siffra.")
+        elif inputNumber > randomNumber:
             print(inputNumber, "är högre än Mis siffra.")
         i += 1
     if i == 6 and i != None:
@@ -435,7 +435,7 @@ def todaysMi():
     howIsMi = "Jag mår %s idag." % (misMood)
     visits = "Jag ska besöka %s företag under veckan." % (integer)
     beer = "Har druckit %s liter öl den här månaden." % (floatNum)
-    
+
     print(dateToday, timeNow, howIsMi, visits, beer)
 
 def shuffleWord():
@@ -452,7 +452,7 @@ def quote():
     """
     Return a line from a file
     """
-    
+
     words = ["hello", "hi", "hey", "hej", "hallåj", "hejsan"]
 
     # Assign multiple words to "words" as a list or a tuple.
@@ -478,26 +478,29 @@ def quote():
     else:
         quote()
 
-
 def inventory():
     """
     Show, count, pick up and remove items in a list.
     """
- 
+
+    with open("inventory.txt", "w") as f:
+        items = ['vara1', 'vara2', 'vara3', 'vara4']
+        f.write(','.join(items))
+
     print(chr(27) + "[2J" + chr(27) + "[;H")
-    print("Välj ett nummer från inventory-menyn.\n") 
+    print("Välj ett nummer från inventory-menyn.\n")
     print("0) Gå tillbaka till huvudmenyn.")
     print("1) Mi ska visa vad som finns i inventoryt.")
     print("2) Mi ska berätta hur många saker hon bär på.")
     print("3) Mi ska plocka upp saker du anger.")
-    print("4) Mi ska kasta bort saker du anger.")    
+    print("4) Mi ska kasta bort saker du anger.")
 
     def choose():
         """
         Print menu nav text
         """
-        print("Välj från 0-4.")        
-    
+        print("Välj från 0-4.")
+
     with open("inventory.txt", "r+") as f:
         items = f.read()
         items = items.replace('\n', '').replace(' ', '')
@@ -523,7 +526,7 @@ def inventory():
                     print("Mi har " + ', '.join(items_ex_last_item) + " och " + last_item + ".")
             else:
                 print("Det finns inga varor i inventoryt.")
-            
+
             choose()
 
         elif choice == "2":
@@ -535,16 +538,16 @@ def inventory():
             elif count_items == 1:
                 print("Mi har " + str(count_items) + " vara i inventoryt.")
 
-            else:  
-                print("Mi har " + str(count_items) + " varor i inventoryt.")     
-            
+            else:
+                print("Mi har " + str(count_items) + " varor i inventoryt.")
+
             choose()
-            
+
         elif choice == "3":
             while True:
-                if len(items) < 7:                  
+                if len(items) < 7:
                     pickup_item = getInputFromUser("Ange en vara du vill att Mi "
-                                                   "ska plocka upp. --> ", lambda inputText: 
+                                                   "ska plocka upp. --> ", lambda inputText:
                                                    inputText, "Mata in en vara.")
                     pickup_item = pickup_item.lower().strip()
                     items.append(pickup_item)
@@ -552,23 +555,23 @@ def inventory():
                         f.write(','.join(items))
                         last_item = items[-1]
                         items_ex_last_item = items[:-1]
-                        
+
                         if len(items) == 1:
-                            print("Mi har plockat upp " + pickup_item + 
-                                  " och nu har hon " + pickup_item + 
+                            print("Mi har plockat upp " + pickup_item +
+                                  " och nu har hon " + pickup_item +
                                   " i inventoryt.")
                             choose()
                             break
                         else:
-                            print("Mi har plockat upp " + pickup_item + 
-                                  " och nu har hon " + ', '.join(items_ex_last_item) + 
+                            print("Mi har plockat upp " + pickup_item +
+                                  " och nu har hon " + ', '.join(items_ex_last_item) +
                                   " och " + last_item + " i inventoryt.")
                             choose()
                             break
                 else:
                     print("Mi kan inte bära på fler saker.")
-                    choose() 
-                    break                               
+                    choose()
+                    break
 
         elif choice == "4":
             while True:
@@ -591,35 +594,35 @@ def inventory():
                             remove_item_index = items.index(remove_item)
                             items.remove(items[remove_item_index])
 
-                            with open("inventory.txt", "w+") as f:                      
-                                    
+                            with open("inventory.txt", "w+") as f:
+
                                 if len(items) == 0:
                                     f.write(''.join(items))
-                                    print("Mi har kastat bort " + remove_item + ".") 
+                                    print("Mi har kastat bort " + remove_item + ".")
                                     choose()
                                     break
-                                
+
                                 else:
                                     f.write(','.join(items))
 
                                     if len(items) == 1:
-                                        print("Mi har kastat bort " + remove_item + ".") 
+                                        print("Mi har kastat bort " + remove_item + ".")
                                         print("Nu har hon " + items[0] + " i inventoryt.")
                                         choose()
                                         break
 
-                                    else:    
+                                    else:
                                         last_item = items[-1]
-                                        items_ex_last_item = items[:-1]                                    
-                                        print("Mi har kastat bort " + remove_item + ".") 
-                                        print("Nu har hon " + 
-                                              ', '.join(items_ex_last_item) + 
+                                        items_ex_last_item = items[:-1]
+                                        print("Mi har kastat bort " + remove_item + ".")
+                                        print("Nu har hon " +
+                                              ', '.join(items_ex_last_item) +
                                               " och " + last_item + " i inventoryt.")
                                         choose()
                                         break
                         else:
-                            print("Det finns ingen vara du angett i inventoryt.")  
-            
+                            print("Det finns ingen vara du angett i inventoryt.")
+
         else:
             print("Du kan bara välja mellan 0 och 4. ")
 

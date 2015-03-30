@@ -15,7 +15,7 @@ import codecs
 
 #Enable debugging of cgi-.scripts
 import cgitb
-cgitb.enable()    
+cgitb.enable()
 
 
 # Send the HTTP header
@@ -24,15 +24,37 @@ print("Content-Type: text/plain;charset=utf-8")
 print("")
 
 
-# Here comes the content of the webpage 
+# Here comes the content of the webpage
 content = """
 Min Redovisnings-sida
+==============================================================================
+Kmom04:
+------------------------------------------------------------------------------
+- Var det svårt att bekanta sig med datastrukturen för listor eller flöt det på bra?
+
+Förutom den sista funktionen "inventory" flöde det bra på i detta moment.
+
+Mitt problem var att det alltid fanns en tom element " " (white space) i listan när det skulle vara tom. Det löste sig med if-satsen som separerade strängerna för att skapa en lista när det fanns flera elementer, men inte gjorde något när filen var tom.
+Text-fil var lite svår när man skulle öppna den i flera olika lager eftersom den är stängd i lägre lager.
+
+Tyckte slice är jätteknepigt, gjorde massa försök och misslyckades. I alla fall känns listor mycket användbara.
+
+- Hur kändes det att skriva grafiskt program i terminalen, kan du se något behov av den typen av program?
+Det var väldigt svårt och inte alls roligt...(Ordet "Curses" påminde mig om det engelska ordet "curse" hela tiden)
+Det tog mer än en hel vecka innan jag var klar. Jag förstår inte heller hur och i vilka situationer man kan dra nytta av det.
+
+- Hur gick det att utföra uppgifterna, vilken tog mest tid och vilken var mest lärorik?
+Som sagt var Curses var trist. Däremot var Labb-uppgifterna som alltid roliga. Dock blev Marvins 16:e funktionen alldeles för lång och tjatig med många indenter. Jag försökte skriva kortare kod, men det gick tyvärr inte i min nivå.
+
+Tycker att det är väldigt intressant att det finns hur många sätt som helst att koda samma funktion.
+
+
 ==============================================================================
 Kmom03:
 ------------------------------------------------------------------------------
 - Har du programmerat med filhantering tidigare, känns det lätt eller svårt?
 
-Nej, jag har aldrig gjort det tidigare, om man räknar bort "include"-functionen i php. Hade lite svårt med att välja en funktion mellan t ex "with open(file, "r") as f:" och "f = open(file, "r").read()". Det tog också lite tid innan jag lyckades med att ta fram endast det jag ville från filen, men ändå kändes det okej. 
+Nej, jag har aldrig gjort det tidigare, om man räknar bort "include"-functionen i php. Hade lite svårt med att välja en funktion mellan t ex "with open(file, "r") as f:" och "f = open(file, "r").read()". Det tog också lite tid innan jag lyckades med att ta fram endast det jag ville från filen, men ändå kändes det okej.
 
 - Vad tycker du om video som läromedel, tycker du att de tillför något som läromedel?
 
@@ -40,7 +62,7 @@ Det är bra när man inte har kvar någon energi att googla och läsa. Däremot 
 
 - Du har gjort din första modul i Python, känns strukturen bra?
 
-Ja, hittills tycker jag att det går okej. Övningarna är lagom svåra men jag har lyckats klarat av dem. Tycker också att de är väldigt givande, lärorika och roliga. 
+Ja, hittills tycker jag att det går okej. Övningarna är lagom svåra men jag har lyckats klarat av dem. Tycker också att de är väldigt givande, lärorika och roliga.
 
 - Vad tyckte du om de olika uppgifterna? Hur tänkte du när du utförde dem? Var de utmanande eller lätta?
 
@@ -52,7 +74,7 @@ Kmom02:
 ------------------------------------------------------------------------------
 Detta moment var väldigt kul. Jag tyckte verkligen om att lösa många små problem. Det var mycket roligare än att jobba med miljön eller ladda upp och ner något hela tiden (dock vet jag att allt sånt är viktigt).
 
-Syntaxen i Python kändes för petig först. Jag tyckte att det skulle vara för mycket jobb att se till att allt ska vara. Men det var faktiskt tvärtom, jag älskar syntaxen. Har läst lite PHP och JS med, men Python känns tydligast och enklast av alla tre. Tydliga syntaxen gör att man lätt kan förstå det andra  (eller t o m man själv) kodat. Det tycker jag är väldigt bra speciellt när man jobbar i ett stort team. 
+Syntaxen i Python kändes för petig först. Jag tyckte att det skulle vara för mycket jobb att se till att allt ska vara. Men det var faktiskt tvärtom, jag älskar syntaxen. Har läst lite PHP och JS med, men Python känns tydligast och enklast av alla tre. Tydliga syntaxen gör att man lätt kan förstå det andra  (eller t o m man själv) kodat. Det tycker jag är väldigt bra speciellt när man jobbar i ett stort team.
 
 Valideringen gick okej. Jag fick flera felmeddelanden varje gång men de var så tydliga att jag i de flesta fall kunde fixa dem utan problem. Dock hade jag svårt med felmeddelandet om exception type eftersom jag inte kunde komma på en passande exception type som skulle innebära allt annat än "True". Men det gick ändå bra när jag fått ett tips om att använda "ValueError".
 
