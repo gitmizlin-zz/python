@@ -42,9 +42,9 @@ def create_phonebook(names, numbers):
 	"""
 	return dict(zip(names, numbers))
 
-ANSWER = {"Chandler": 55523645, "Monica": 55564452 "Ross": 55545872}
-ANSWER = create_phonebook(["Chandler", "Monica", "Ross"], [55523645, 55564452, 55545872])
+phonebook = create_phonebook(["Chandler", "Monica", "Ross"], [55523645, 55564452, 55545872])
 
+ANSWER = phonebook
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -58,11 +58,7 @@ How many items are there in the dictionary?
 Write your code below and put the answer into the variable ANSWER.
 """
 
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = len(phonebook)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -77,11 +73,7 @@ Use the 'get()' method on your phonebook and answer with the phonenumber of
 Write your code below and put the answer into the variable ANSWER.
 """
 
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = phonebook.get("Ross", None)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -94,12 +86,12 @@ Get all keys from the dictionary and return them in a sorted list.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+keys = []
 
+for key in phonebook.keys():
+	keys.append(key)
 
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = sorted(keys)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -113,11 +105,12 @@ Get all values from the dictionary and return them in a sorted list.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+values = []
 
+for value in phonebook.values():
+	values.append(value)
 
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = sorted(values)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -132,11 +125,7 @@ Answer with the return boolean value.
 Write your code below and put the answer into the variable ANSWER.
 """
 
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = 'Ross' in phonebook.keys()
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -151,11 +140,7 @@ dictionary. Answer with the return boolean value.
 Write your code below and put the answer into the variable ANSWER.
 """
 
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = 55545872 in phonebook.values()
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -171,16 +156,15 @@ resulting string.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+output = []
+for key in sorted(phonebook):
+    output.append(key + ' ' + str(phonebook[key]))
 
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = "\n".join(output)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("1.8", ANSWER, False))
+print(dbwebb.assertEqual("1.8", ANSWER, True))
 
 """
 Exercise 1.9
