@@ -37,12 +37,13 @@ Write your code below and put the answer into the variable ANSWER.
 """
 
 def create_phonebook(names, numbers):
-	"""
-	Create a dictionay, add elements and return the result
-	"""
-	return dict(zip(names, numbers))
+    """
+    Create a dictionay, add elements and return the result
+    """
+    return dict(zip(names, numbers))
 
 phonebook = create_phonebook(["Chandler", "Monica", "Ross"], [55523645, 55564452, 55545872])
+phonebook2 = phonebook.copy()
 
 ANSWER = phonebook
 
@@ -89,7 +90,7 @@ Write your code below and put the answer into the variable ANSWER.
 keys = []
 
 for key in phonebook.keys():
-	keys.append(key)
+    keys.append(key)
 
 ANSWER = sorted(keys)
 
@@ -108,7 +109,7 @@ Write your code below and put the answer into the variable ANSWER.
 values = []
 
 for value in phonebook.values():
-	values.append(value)
+    values.append(value)
 
 ANSWER = sorted(values)
 
@@ -158,13 +159,13 @@ Write your code below and put the answer into the variable ANSWER.
 """
 output = []
 for key in sorted(phonebook):
-    output.append(key + ' ' + str(phonebook[key]))
+    output.append(key + ' ' + str(phonebook[key]) + '\n')
 
-ANSWER = "\n".join(output)
+ANSWER = ''.join(output)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("1.8", ANSWER, True))
+print(dbwebb.assertEqual("1.8", ANSWER, False))
 
 """
 Exercise 1.9
@@ -176,11 +177,11 @@ dictionary.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+new_dict = phonebook
+for key, value in new_dict.items():
+    new_dict[key] = '+1-' + str(value)
 
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = new_dict
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -195,15 +196,13 @@ the resulting dictionary.
 Write your code below and put the answer into the variable ANSWER.
 """
 
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+phonebook2.pop('Ross')
+phonebook = phonebook2
+ANSWER = phonebook
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("1.10", ANSWER, False))
+print(dbwebb.assertEqual("1.10", ANSWER, True))
 
 """
 Exercise 1.11
@@ -213,12 +212,8 @@ dictionary.
 
 Write your code below and put the answer into the variable ANSWER.
 """
-
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+phonebook['Ross'] = 55545872
+ANSWER = phonebook
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -240,11 +235,9 @@ of the tuple as an integer.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+tup1 = 'elephant', 33, 7.28, 'stove', 4
 
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = len(tup1)
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -260,15 +253,13 @@ variable: 'd'. Hint: a,b,c = tuple.
 Write your code below and put the answer into the variable ANSWER.
 """
 
+a, b, c, d, e = tup1
 
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = d
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.2", ANSWER, False))
+print(dbwebb.assertEqual("2.2", ANSWER, True))
 
 """
 Exercise 2.3
@@ -279,12 +270,10 @@ integer.
 
 Write your code below and put the answer into the variable ANSWER.
 """
+list1 = [98, 5, 12, 369, 1]
+tup2 = list1[:1]
 
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+ANSWER = int(tup2[0])
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
@@ -299,16 +288,16 @@ answer with the first three elements in a comma-separated string.
 
 Write your code below and put the answer into the variable ANSWER.
 """
-
-
-
-
-
-ANSWER = "Replace this text with the variable holding the answer."
+tup3 = ('frog', 54, 4.77, 'fridge', 2)
+list1 = list(tup3)
+list1[1] = 'hammer'
+tup3 = tuple(list1)
+text = tup3[:3]
+ANSWER = ','.join(map(str, text))
 
 # Is the answer as expected?
 # When you get stuck - change False to True to get a hint.
-print(dbwebb.assertEqual("2.4", ANSWER, False))
+print(dbwebb.assertEqual("2.4", ANSWER, True))
 
 
 dbwebb.exitWithSummary()
