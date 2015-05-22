@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 __pycache__
 .dbwebb.config
+=======
+default/
+__pycache__/
+>>>>>>> c8c6551bb01c54d1aaef4fa6624a71290f7454a6
