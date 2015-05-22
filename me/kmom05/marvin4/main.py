@@ -61,6 +61,8 @@ def main():
             marvin.quote()
         elif choice == "16":
             marvin.inventory()
+        elif choice == "17":
+            marvin.analyse_file()
         else:
             print("Du kan bara välja från menyn . ")
 

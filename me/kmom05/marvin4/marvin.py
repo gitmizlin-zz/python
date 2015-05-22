@@ -10,6 +10,12 @@ import math
 from random import randint
 import random
 import datetime
+import codecs
+import re
+from collections import Counter
+from string import ascii_lowercase
+import copy
+import operator
 
 def menu():
     """
@@ -56,6 +62,7 @@ def menu():
     print("16) Mi har ett inventory där hon kan bära saker. Genom att fråga henne så ska hon kunna: "
           "Visa vad som finns i inventoryt (visa), berätta hur många saker hon bär på (antal), "
           "plocka upp saker du anger (plocka) och kasta bort saker du anger (kasta).")
+    print("17) Mi ska analysera en fil och räkna ut antalet ord/bokstäver.")
     print("q) Quit.")
 
 def getInputFromUser(inputText, verifier, error=None):
@@ -626,6 +633,115 @@ def inventory():
         else:
             print("Du kan bara välja mellan 0 och 4. ")
 
+def analyse_file():
+    """
+    Return the number of words/letters in a file.
+
+Marvin skall fråga efter textfilens namn, om man inte anger ett filnamn skall Alice-filen användas som default.
+
+Marvin skall analysera filen och räkna ut hur många ord som finns i filen. Skriv ut totala antalet ord i filen.
+
+Marvin skall räkna ut antalet gånger som varje ord förekommer i texten, ordets frekvens i texten, word frequency. Skriv ut de 7 mest förekommande orden i texten, i ordning och med antalet gånger det förekommer.
+
+Visa de 7 mest förekommande orden som finns i texten, men sortera bort de ord som är vanliga ord. Du hittar en lista av vanliga ord i common-words.txt.
+
+Visa de 7 mest förekommande orden, sortera bort de vanliga orden, och visa enbart de orden som är rättstavade. I ordlistan words.txt hittar du de ord som betraktas som rättstavade.
+
+Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäver som förekommer mest, i ordning och med en procent-siffra som visar hur ofta bokstaven förekommer.
+    """
+
+    inputText = "Ange ditt textfilnamn. För att öppna kursfilen, klicka bara 'enter': \n"
+    textfile = input(inputText)
+
+    # If file name given, open it. Otherwise open the default file.
+
+    if not textfile:
+        textfile = "alice-ch1.txt"
+
+    # Get the total number of words in the file
+    words = 0
+
+    try:
+        with open (textfile, 'r') as f:
+            words = f.read()
+            words = re.sub('[^A-Za-z0-9\ ]+', " ", words)
+            words = list(words.split())
+            num_of_words = len(words)
+
+            print("Antalet ord i filen: " + str(num_of_words) + "\n")
+    except IOError:
+        print("Filen du angett kan inte hittas.")
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
+
+    # Get the 7 most used words in the alphabetical order with their frequency
+    wordfreq = [words.count(word) for word in words]
+    dictionary = dict(zip(words, wordfreq))
+    dictionary = [(dictionary[key], key) for key in dictionary] # type chcanges from dic to list here
+    dictionary.sort()
+    dictionary.reverse()
+
+    print("7 mest förekommande orden:")
+    i=0
+    for k in dictionary[:7]:
+        print(i+1, ". ", dictionary[i], sep="")
+        i += 1
+    print("\n")
+
+    # Get the 7 most used words excluding common words.
+    dic_no_cw = dict(dictionary)
+
+    print("\n")
+    with open("common-words.txt", 'r') as cw:
+        common_words = list(cw.read().split())
+        for key, value in list(dic_no_cw.items()):
+            for line in common_words:
+                if value == line:
+                    del dic_no_cw[key]
+
+    dic_no_cw_spell = dic_no_cw
+
+    dic_no_cw7 = Counter(dic_no_cw).most_common(7)
+    dic_no_cw7.sort()
+    dic_no_cw7.reverse()
+
+    print("7 mest förekommande orden som inte är vanliga ord:")
+    i=0
+    for k in dic_no_cw7:
+        print(i+1, ". ", dic_no_cw7[i], sep="")
+        i += 1
+    print("\n")
+
+    # Get the 7 most used correctly-spelled words excluding common words. (Visa de 7 mest förekommande orden, sortera bort de vanliga orden, och visa enbart de orden som är rättstavade. I ordlistan words.txt hittar du de ord som betraktas som rättstavade.)
+
+    # with open ("words.txt", 'r') as f:
+    #     right_spelled = list(f.read().split())
+    #     for key, value in list(dic_no_cw_spell.items()):
+    #         for line in right_spelled:
+    #             if value != line:
+    #                 del dic_no_cw_spell[key] # not working
+
+    # dic_no_cw_spell = Counter(dic_no_cw_spell).most_common(7)
+    # dic_no_cw_spell.sort()
+    # dic_no_cw_spell.reverse()
+
+    # print("7 mest förekommande rättstavade orden som inte är vanliga ord:")
+    # i=0
+    # for k in dic_no_cw_spell:
+    #     print(i+1, ". ", dic_no_cw_spell[i], sep="")
+    #     i += 1
+    # print("\n")
+
+    # count each letter. case insensitive?? remove space
+    dic = {}
+    with open (textfile, 'r') as f:
+        c = f.read().strip()
+
+        for x in ascii_lowercase:
+            dic[x] = c.count(x)
+    sorted(dic.values()) # not working!!
+    print(dic)
 
 def meImage():
     """
