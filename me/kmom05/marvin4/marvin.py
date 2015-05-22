@@ -740,7 +740,7 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
 
         for x in ascii_lowercase:
             dic[x] = c.count(x)
-    sorted(dic.values()) # not working!!
+    sorted(dic.values()) # not working!!!
     print(dic)
 
 def meImage():
