@@ -700,7 +700,8 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
                 if value == line:
                     del dic_no_cw[key]
 
-    dic_no_cw_spell = dic_no_cw
+    dict_copy = dict(dic_no_cw)
+    print(dict_copy)
 
     dic_no_cw7 = Counter(dic_no_cw).most_common(7)
     dic_no_cw7.sort()
@@ -713,35 +714,41 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
         i += 1
     print("\n")
 
-    # Get the 7 most used correctly-spelled words excluding common words. (Visa de 7 mest förekommande orden, sortera bort de vanliga orden, och visa enbart de orden som är rättstavade. I ordlistan words.txt hittar du de ord som betraktas som rättstavade.)
+    print(dict_copy)
+    
+    # Get the 7 most used correctly-spelled words excluding common words. Correctly-spelled words are in "words.txt".
+    with open ("words.txt", 'r') as f:
+        cor_words = list(f.read().split())
 
-    # with open ("words.txt", 'r') as f:
-    #     right_spelled = list(f.read().split())
-    #     for key, value in list(dic_no_cw_spell.items()):
-    #         for line in right_spelled:
-    #             if value != line:
-    #                 del dic_no_cw_spell[key] # not working
+        for key, value in list(dict_copy.items()):
+            for line in cor_words:
+                if value != line:
+                    del dict_copy[key] #not working!!!
+    print(dict_copy)
 
-    # dic_no_cw_spell = Counter(dic_no_cw_spell).most_common(7)
-    # dic_no_cw_spell.sort()
-    # dic_no_cw_spell.reverse()
+    # Count each letter and get the 7 most common letters with their frequencies.
 
-    # print("7 mest förekommande rättstavade orden som inte är vanliga ord:")
-    # i=0
-    # for k in dic_no_cw_spell:
-    #     print(i+1, ". ", dic_no_cw_spell[i], sep="")
-    #     i += 1
-    # print("\n")
-
-    # count each letter. case insensitive?? remove space
     dic = {}
     with open (textfile, 'r') as f:
         c = f.read().strip()
 
         for x in ascii_lowercase:
             dic[x] = c.count(x)
-    sorted(dic.values()) # not working!!!
-    print(dic)
+    dic_sorted = sorted(dic.items(), key=operator.itemgetter(1))
+    dic_sorted.reverse()
+
+    sum_v =0
+    for k, v in dic_sorted:
+        sum_v = sum_v + v
+
+    print("7 mest förekommande bokstäverna:")
+    i=0
+    for k, v in dic_sorted:
+        if i < 7:
+            p = round((v/sum_v*100), 2)
+            print(i+1, ". ", k, " : ", p, " %", sep="")
+            i += 1
+    print("\n")
 
 def meImage():
     """
