@@ -714,17 +714,27 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
         i += 1
     print("\n")
 
-    print(dict_copy)
-    
     # Get the 7 most used correctly-spelled words excluding common words. Correctly-spelled words are in "words.txt".
     with open ("words.txt", 'r') as f:
         cor_words = list(f.read().split())
 
-        for key, value in list(dict_copy.items()):
+        new_dic = {}
+
+        for key, value in list(dict_copy.items()):            
             for line in cor_words:
-                if value != line:
-                    del dict_copy[key] #not working!!!
-    print(dict_copy)
+                if value == line:
+                    new_dic[key] = value
+    print(new_dic)
+
+    new_dic= Counter(new_dic).most_common(7)
+    new_dic.sort()
+    new_dic.reverse()
+    print("7 mest förekommande rättstavade orden som inte är vanliga ord:")
+    i=0
+    for k, v in new_dic:
+        print(i+1, ". ", new_dic[i], sep="")
+        i += 1
+    print("\n")
 
     # Count each letter and get the 7 most common letters with their frequencies.
 
