@@ -637,17 +637,12 @@ def analyse_file():
     """
     Return the number of words/letters in a file.
 
-Marvin skall fråga efter textfilens namn, om man inte anger ett filnamn skall Alice-filen användas som default.
-
-Marvin skall analysera filen och räkna ut hur många ord som finns i filen. Skriv ut totala antalet ord i filen.
-
-Marvin skall räkna ut antalet gånger som varje ord förekommer i texten, ordets frekvens i texten, word frequency. Skriv ut de 7 mest förekommande orden i texten, i ordning och med antalet gånger det förekommer.
-
-Visa de 7 mest förekommande orden som finns i texten, men sortera bort de ord som är vanliga ord. Du hittar en lista av vanliga ord i common-words.txt.
-
-Visa de 7 mest förekommande orden, sortera bort de vanliga orden, och visa enbart de orden som är rättstavade. I ordlistan words.txt hittar du de ord som betraktas som rättstavade.
-
-Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäver som förekommer mest, i ordning och med en procent-siffra som visar hur ofta bokstaven förekommer.
+    Marvin skall fråga efter textfilens namn, om man inte anger ett filnamn skall Alice-filen användas som default.
+    Marvin skall analysera filen och räkna ut hur många ord som finns i filen. Skriv ut totala antalet ord i filen.
+    Marvin skall räkna ut antalet gånger som varje ord förekommer i texten, ordets frekvens i texten, word frequency. Skriv ut de 7 mest förekommande orden i texten, i ordning och med antalet gånger det förekommer.
+    Visa de 7 mest förekommande orden som finns i texten, men sortera bort de ord som är vanliga ord. Du hittar en lista av vanliga ord i common-words.txt.
+    Visa de 7 mest förekommande orden, sortera bort de vanliga orden, och visa enbart de orden som är rättstavade. I ordlistan words.txt hittar du de ord som betraktas som rättstavade.
+    Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäver som förekommer mest, i ordning och med en procent-siffra som visar hur ofta bokstaven förekommer.
     """
 
     inputText = "Ange ditt textfilnamn. För att öppna kursfilen, klicka bara 'enter': \n"
@@ -659,6 +654,7 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
         textfile = "alice-ch1.txt"
 
     # Get the total number of words in the file
+
     words = 0
 
     try:
@@ -676,11 +672,15 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
         raise
 
     # Get the 7 most used words in the alphabetical order with their frequency
+
     wordfreq = [words.count(word) for word in words]
     dictionary = dict(zip(words, wordfreq))
     dictionary = [(dictionary[key], key) for key in dictionary] # type chcanges from dic to list here
+
     dictionary.sort()
     dictionary.reverse()
+
+    dict_copy = dict(dictionary)
 
     print("7 mest förekommande orden:")
     i=0
@@ -700,9 +700,6 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
                 if value == line:
                     del dic_no_cw[key]
 
-    dict_copy = dict(dic_no_cw)
-    print(dict_copy)
-
     dic_no_cw7 = Counter(dic_no_cw).most_common(7)
     dic_no_cw7.sort()
     dic_no_cw7.reverse()
@@ -717,18 +714,16 @@ Beräkna frekvensen för varje bokstav, letter frequency. Skriv ut de 7 bokstäv
     # Get the 7 most used correctly-spelled words excluding common words. Correctly-spelled words are in "words.txt".
     with open ("words.txt", 'r') as f:
         cor_words = list(f.read().split())
-
         new_dic = {}
-
-        for key, value in list(dict_copy.items()):            
+        for key, value in list(dict_copy.items()):
             for line in cor_words:
                 if value == line:
                     new_dic[key] = value
-    print(new_dic)
 
     new_dic= Counter(new_dic).most_common(7)
     new_dic.sort()
     new_dic.reverse()
+
     print("7 mest förekommande rättstavade orden som inte är vanliga ord:")
     i=0
     for k, v in new_dic:
