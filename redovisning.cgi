@@ -27,6 +27,35 @@ print("")
 # Here comes the content of the webpage
 content = """
 Min Redovisnings-sida
+
+==============================================================================
+Kmom05:
+------------------------------------------------------------------------------
+- Hur kändes det med datastrukturerna dictionaries och tupler? Har du sett något liknande förut?
+
+Datastrukturena kändes okej, och jag tyckte att dictionaries liknade listor i python. Dock har jag inte sett något som liknar tupler tidigare. Videon om dictionaries uppskattade jag mycket. Den var enkel men kändes inte lika redundant som de andra videorna sedan innan.
+
+- Känns det som du fick ordning på listor, dictionaries och tupler? När man skall använda respektive och hur de kan användas?
+
+Det känns som att jag fick ordning på skilnaderna mellan listor och dictionaries men tupler har jag lite svårt med. Dictionaries kan användas som bokstavligen en ordbok där det finns en key och dess value. Det finns ingen riktig ordning i dictionaries. Däremot är listor en lista med index.
+
+- Använde du något av listor, dictionaries eller tupler när du gjorde uppgifterna, på vilket sätt?
+
+Jag använde mig av dictionaries och listor lika mycket för att köra marvins textanalys. Jag ville hålla mig till dictionaries för att det var nytt för mig, men ibland behöver man använda sig av indexerade listor för att få ordning över datan. Angående tupler så är jag inte helt 100% säker på vilka användningsområden det handlar om.
+
+- Hur gick det att utföra uppgifterna, vilken tog mest tid och vilken var mest lärorik?
+
+Labben gick bra men det tog alldeles för mycket tid med marvin där jag hade problem med att kopiera en dictionary. Oavsett var jag gjorde det så blev dictionaryn inte som den skulle. Efter en stund så kom jag äntligen på vad som var fel, jag hade försökt kopiera en annan dictionary i en felaktig rad. Efter jag upptäckte detta så kunde jag lösa det och forsätta med arbetet. Det tog mer än en vecka.
+
+- Gjorde du extrauppgiften?
+
+Nej, eftersom jag redan ligger efter i tidsplaneringen behövde jag hoppa över den.
+
+- Övrigt
+
+Labben var som vanligt mycket kul och lärorik.
+
+
 ==============================================================================
 Kmom04:
 ------------------------------------------------------------------------------
