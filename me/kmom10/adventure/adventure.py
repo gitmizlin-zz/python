@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""
-Example to show how command-line options can be handled by a script.
-"""
-
 import sys
 import os
 from datetime import datetime
@@ -25,13 +21,11 @@ Usage:
   {program} [options] name
 
 Options:
-    -h, --help skall visa en hjälptext som beskriver ditt kommando och hur det används.
-    -v, --version skall visa versionen av programmet.
-    --verbose skall innebära att mer text skrivs ut, kanske bra för debugging?
-    -s, --silent skall innebära att minimalt med utskrift sker, bra om man bara vill se svaret.
-    -p, --ping skall hämna en webbsida.
-
-  name                           Your name.
+    -h, --help skriver ut en beskrivning av kommandot och vilka parameterar som fungerar.
+    -i, --info skriver ut en beskrivning av spelet och spelets idé.
+    -v, --version skriver ut versionen av spelet.
+    -a, --about skriver ut en kort beskrivning av dig själv, du som gjort spelet.
+    -c, --cheat skriver ut minsta möjliga väg för att klara spelet och berättar hur du kan fuska dig fram.
 """.format(program=PROGRAM, author=AUTHOR, email=EMAIL, version=VERSION)
 
 MSG_VERSION = "{program} version {version}.".format(program=PROGRAM, version=VERSION)
@@ -62,15 +56,14 @@ def printVersion():
     print(MSG_VERSION)
     sys.exit(EXIT_SUCCESS)
 
-def pingWebsite():
+def printMi():
     """
-    Ping a website.
+    Print info about Mi.
     """
-    url = "http://google.com"
-    req = requests.head(url)
+    print("Det är jag som gjort detta spel och jag heter Mi.")
 
-    print("Request to ", url)
-    print("Recieved status code: ", req.status_code)
+def cheat():
+
 
 def parseOptions():
     """
