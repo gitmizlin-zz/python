@@ -62,7 +62,7 @@ def printMi():
     """
     print("Det är jag som gjort detta spel och jag heter Mi.")
 
-def cheat():
+# def cheat():
 
 
 def parseOptions():
@@ -130,3 +130,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

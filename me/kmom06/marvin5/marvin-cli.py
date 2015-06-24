@@ -8,8 +8,8 @@ Example to show how command-line options can be handled by a script.
 import sys
 import os
 from datetime import datetime
+import time
 import getopt
-import pdb
 import requests
 
 #
@@ -19,7 +19,7 @@ PROGRAM = os.path.basename(sys.argv[0])
 AUTHOR = "Mi"
 EMAIL = "miis15@student.bth.se"
 VERSION = "1.0"
-USAGE = """{program} - AUTHOER: {author} ({email}), version {version}
+USAGE = """{program} - AUTHOR: {author} ({email}), version {version}
 
 Usage:
   {program} [options] name
@@ -33,7 +33,6 @@ Options:
 
   name                           Your name.
 """.format(program=PROGRAM, author=AUTHOR, email=EMAIL, version=VERSION)
-
 MSG_VERSION = "{program} version {version}.".format(program=PROGRAM, version=VERSION)
 MSG_USAGE = "Use {program} --help to get usage.\n".format(program=PROGRAM)
 
@@ -41,7 +40,7 @@ MSG_USAGE = "Use {program} --help to get usage.\n".format(program=PROGRAM)
 # Global default settings affecting behaviour of script in several places
 #
 SILENT = False
-VERBOSE = True
+VERBOSE = False
 NAME = ""
 
 EXIT_SUCCESS = 0
@@ -70,7 +69,7 @@ def pingWebsite():
     req = requests.head(url)
 
     print("Request to ", url)
-    print("Recieved status code: ", req.status_code)
+    print("Received status code: ", req.status_code)
 
 def parseOptions():
     """
@@ -79,33 +78,32 @@ def parseOptions():
 
     # Switch through all options
     try:
-        global VERBOSE
+        global VERBOSE, SILENT, arg, args
 
-        opts, args = getopt.getopt(sys.argv[1:], "d:hr:sv", ["ping", "help", "version", "silent", "verbose"])
+        opts, args = getopt.getopt(sys.argv[1:], "phvs", ["ping", "help", "version", "silent", "verbose"])
 
         for opt, arg in opts:
             if opt in ("-h", "--help"):
                 printUsage(EXIT_SUCCESS)
 
-            elif opt in ("-p", "--ping"):
+            elif opt in ("-p", "--ping"): # "-p" funkar inte. "--ping" funkar.
+                print("ping!!")
                 pingWebsite()
 
             elif opt in ("-v", "--version"):
                 printVersion()
 
-            elif opt in ("--verbose"):
+            elif opt in "--verbose":
                 VERBOSE = True
 
             elif opt in ("-s", "--silent"):
-                VERBOSE = False
+                SILENT = True
 
             else:
                 assert False, "Unhandled option"
 
         if len(args) != 1:
             assert False, "Missing name"
-
-        print(args)
 
         # The name passed as a required argument
         global NAME
@@ -128,12 +126,19 @@ def main():
     parseOptions()
 
     timediff = datetime.now()-startTime
+
     if VERBOSE:
         sys.stderr.write("Script executed in {}.{} seconds\n".format(timediff.seconds, timediff.microseconds))
+        # for arg in args:
+        print(args)
+        print("Executed: ", time.strftime("%Y-%m-%d %H:%M"))
+
+    if SILENT:
+        sys.stderr.write("Script executed in {}.{} seconds\n".format(timediff.seconds, timediff.microseconds))
+        for arg in args:
+            print(arg)
 
     sys.exit(EXIT_SUCCESS)
-
-
 
 if __name__ == "__main__":
     main()
