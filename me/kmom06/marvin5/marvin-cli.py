@@ -21,6 +21,7 @@ EMAIL = "miis15@student.bth.se"
 VERSION = "1.0"
 USAGE = """{program} - AUTHOR: {author} ({email}), version {version}
 
+
 Usage:
   {program} [options] name
 
@@ -65,30 +66,51 @@ def pingWebsite():
     """
     Ping a website.
     """
-    url = "http://google.com"
-    req = requests.head(url)
 
-    print("Request to ", url)
-    print("Received status code: ", req.status_code)
+    url = "http://yahoo.co.jps"
+
+    try:
+        # Get current time
+        rTime = time.ctime(time.time())
+
+        # Request header from url
+        print("Ready to send HTTP request to ", url, "\n(press return)", end='')
+        input()
+        req = requests.head(url)
+
+        # Print result
+        print("Request to ", url, " sent at ", rTime)
+        print("Recieved status code: ", req.status_code)
+        print("Page was last modified: ", req.headers["Last-Modified"])
+
+    except requests.ConnectionError:
+
+        print("Failed to connect")
 
 def parseOptions():
     """
     Merge default options with incoming options and arguments and return them as a dictionary.
     """
+    global VERBOSE, SILENT
 
     # Switch through all options
     try:
-        global VERBOSE, SILENT, arg, args
-
         opts, args = getopt.getopt(sys.argv[1:], "phvs", ["ping", "help", "version", "silent", "verbose"])
 
+        print(args)
+
         for opt, arg in opts:
+            print(arg)
+
             if opt in ("-h", "--help"):
                 printUsage(EXIT_SUCCESS)
 
-            elif opt in ("-p", "--ping"): # "-p" funkar inte. "--ping" funkar.
-                print("ping!!")
-                pingWebsite()
+            elif opt in ("-p", "--ping"):
+                try:
+                    pingWebsite()
+                except Exception as err:
+                    print("fail!")
+                    print(err)
 
             elif opt in ("-v", "--version"):
                 printVersion()
@@ -102,12 +124,12 @@ def parseOptions():
             else:
                 assert False, "Unhandled option"
 
-        if len(args) != 1:
-            assert False, "Missing name"
+        # if len(args) != 1:
+        #     assert False, "Missing name"
 
         # The name passed as a required argument
-        global NAME
-        NAME = args[0]
+        # global NAME
+        # NAME = args[0]
 
     except Exception as err:
         print(err)
@@ -115,7 +137,7 @@ def parseOptions():
         # Prints the callstack, good for debugging, comment out for production
         #traceback.print_exception(Exception, err, None)
         sys.exit(EXIT_USAGE)
-
+        sys.exit(EXIT_FAILED)
 
 def main():
     """
@@ -129,16 +151,15 @@ def main():
 
     if VERBOSE:
         sys.stderr.write("Script executed in {}.{} seconds\n".format(timediff.seconds, timediff.microseconds))
-        # for arg in args:
-        print(args)
+
         print("Executed: ", time.strftime("%Y-%m-%d %H:%M"))
 
     if SILENT:
         sys.stderr.write("Script executed in {}.{} seconds\n".format(timediff.seconds, timediff.microseconds))
-        for arg in args:
-            print(arg)
 
     sys.exit(EXIT_SUCCESS)
+
+    print(exitStatus)
 
 if __name__ == "__main__":
     main()
