@@ -74,13 +74,13 @@ def parseOptions():
     try:
         global VERBOSE
 
-        opts, args = getopt.getopt(sys.argv[1:], "d:hr:sv", ["ping", "help", "version", "silent", "verbose"])
+        opts, args = getopt.getopt(sys.argv[1:], "d:hr:svp:", ["ping", "help", "version", "silent", "verbose"])
 
         for opt, arg in opts:
             if opt in ("-h", "--help"):
                 printUsage(EXIT_SUCCESS)
 
-            elif opt in ("-p", "--ping"):
+            elif opt in ("-p", "--ping", "ping"):
                 pingWebsite()
 
             elif opt in ("-v", "--version"):

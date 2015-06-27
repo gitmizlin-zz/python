@@ -48,27 +48,30 @@ EXIT_SUCCESS = 0
 EXIT_USAGE = 1
 EXIT_FAILED = 2
 
+def exit(exitStatus):
+    """
+    exit Python
+    """
+    print("Satus code:", exitStatus)
+    sys.exit(exitStatus)
+
 def printUsage(exitStatus):
     """
     Print usage information about the script and exit.
     """
     print(USAGE)
-    sys.exit(exitStatus)
+
 
 def printVersion():
     """
     Print version information and exit.
     """
     print(MSG_VERSION)
-    sys.exit(EXIT_SUCCESS)
 
-def pingWebsite():
+def pingWebsite(url = "http://www.yahoo.co.jp/"):
     """
     Ping a website.
     """
-
-    url = "http://yahoo.co.jps"
-
     try:
         # Get current time
         rTime = time.ctime(time.time())
@@ -81,11 +84,12 @@ def pingWebsite():
         # Print result
         print("Request to ", url, " sent at ", rTime)
         print("Recieved status code: ", req.status_code)
-        print("Page was last modified: ", req.headers["Last-Modified"])
+
+        exit(EXIT_SUCCESS)
 
     except requests.ConnectionError:
+        exit(EXIT_FAILED)
 
-        print("Failed to connect")
 
 def parseOptions():
     """
@@ -95,22 +99,25 @@ def parseOptions():
 
     # Switch through all options
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "phvs", ["ping", "help", "version", "silent", "verbose"])
+        opts, args = getopt.getopt(sys.argv[1:], "p:hvs", ["ping", "help", "version", "silent", "verbose"])
 
         print(args)
+
+        for i, arg in enumerate(args):
+            if (arg == 'ping'):
+                if (not args[i+1]):
+                    print('you suck')
+                else:
+                    try:
+                        pingWebsite(args[i+1])
+                    except Exception as err:
+                        print(err)
 
         for opt, arg in opts:
             print(arg)
 
             if opt in ("-h", "--help"):
                 printUsage(EXIT_SUCCESS)
-
-            elif opt in ("-p", "--ping"):
-                try:
-                    pingWebsite()
-                except Exception as err:
-                    print("fail!")
-                    print(err)
 
             elif opt in ("-v", "--version"):
                 printVersion()
@@ -134,10 +141,10 @@ def parseOptions():
     except Exception as err:
         print(err)
         print(MSG_USAGE)
+        exit(EXIT_USAGE)
+
         # Prints the callstack, good for debugging, comment out for production
         #traceback.print_exception(Exception, err, None)
-        sys.exit(EXIT_USAGE)
-        sys.exit(EXIT_FAILED)
 
 def main():
     """
@@ -145,21 +152,24 @@ def main():
     """
     startTime = datetime.now()
 
-    parseOptions()
+    try:
+        parseOptions()
 
-    timediff = datetime.now()-startTime
+        timediff = datetime.now()-startTime
 
-    if VERBOSE:
-        sys.stderr.write("Script executed in {}.{} seconds\n".format(timediff.seconds, timediff.microseconds))
+        if VERBOSE:
+            sys.stderr.write("Script executed in {}.{} seconds\n".format(timediff.seconds, timediff.microseconds))
 
-        print("Executed: ", time.strftime("%Y-%m-%d %H:%M"))
+            print("Executed: ", time.strftime("%Y-%m-%d %H:%M"))
 
-    if SILENT:
-        sys.stderr.write("Script executed in {}.{} seconds\n".format(timediff.seconds, timediff.microseconds))
+        if SILENT:
+            exit(EXIT_SUCCESS)
 
-    sys.exit(EXIT_SUCCESS)
+        exit(EXIT_SUCCESS)
 
-    print(exitStatus)
+    except Exception as err:
+        exit(EXIT_FAILED)
+
 
 if __name__ == "__main__":
     main()
